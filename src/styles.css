@@ -182,7 +182,7 @@ body.sidebar-collapsed .sidebar-toggle.inside{
   height:100vh;
   margin-left: calc(var(--sidebar-width) + var(--sidebar-gap) + 40px);
   z-index:1;
-  transition: margin-left .35s ease;
+  transition: margin-left 0.35s ease;
 }
 .slide{
   position:absolute; inset:0;
