@@ -1,5 +1,5 @@
 function ActionButtons({ actions, extraClass = '', onAction }) {
-  if (!actions?.length) return null
+  if (!actions?.length) return null;
   return (
     <div className={`hero-actions reveal ${extraClass}`.trim()}>
       {actions.map((action, idx) => (
@@ -12,11 +12,11 @@ function ActionButtons({ actions, extraClass = '', onAction }) {
         </button>
       ))}
     </div>
-  )
+  );
 }
 
 function renderMarkup(text) {
-  return { __html: text }
+  return { __html: text };
 }
 
 export default function SlideRenderer({
@@ -32,20 +32,32 @@ export default function SlideRenderer({
   quizScore,
   totalQuizQuestions,
 }) {
-  const quizOffset = 0
+  const quizOffset = 0;
 
   return (
-    <section className={`slide${isActive ? ' active' : ''}`} data-title={slide.navTitle}>
+    <section
+      className={`slide${isActive ? ' active' : ''}`}
+      data-title={slide.navTitle}
+    >
       <div className="slide-scroll">
         <div className={`slide-inner${slide.type === 'hero' ? ' hero' : ''}`}>
           <div className="section-head reveal">
-            {slide.type === 'hero' ? null : <span className="eyebrow">{slide.eyebrow}</span>}
+            {slide.type === 'hero' ? null : (
+              <span className="eyebrow">{slide.eyebrow}</span>
+            )}
             {slide.type === 'hero' ? (
               <>
                 <div className="eyebrow reveal">{slide.eyebrow}</div>
-                <h1 className="reveal" dangerouslySetInnerHTML={renderMarkup(slide.title)} />
+                <h1
+                  className="reveal"
+                  dangerouslySetInnerHTML={renderMarkup(slide.title)}
+                />
                 <p className="lead reveal">{slide.lead}</p>
-                <ActionButtons actions={slide.actions} extraClass="restart-space" onAction={onAction} />
+                <ActionButtons
+                  actions={slide.actions}
+                  extraClass="restart-space"
+                  onAction={onAction}
+                />
               </>
             ) : (
               <h2>{slide.title}</h2>
@@ -59,14 +71,16 @@ export default function SlideRenderer({
                   <article className="panel glass reveal" key={card.title}>
                     <h3>{card.title}</h3>
                     <ul className="check-list">
-                      {card.list.map((item) => <li key={item}>{item}</li>)}
+                      {card.list.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
                     </ul>
                   </article>
                 ))}
               </div>
 
               <div className="image-placeholder glass reveal">
-                  <img className="image" src={slide.image} alt={slide.imageAlt} />
+                <img className="image" src={slide.image} alt={slide.imageAlt} />
               </div>
             </>
           )}
@@ -79,7 +93,11 @@ export default function SlideRenderer({
                     <h3>{item.title}</h3>
                     <p>{item.text}</p>
                     <div className="tag-row">
-                      {item.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}
+                      {item.tags.map((tag) => (
+                        <span className="tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </article>
                 ))}
@@ -119,16 +137,23 @@ export default function SlideRenderer({
             <>
               <div className="accordion reveal">
                 {slide.accordion.map((item, idx) => {
-                  const open = accordionOpen === idx
+                  const open = accordionOpen === idx;
                   return (
                     <div key={item.title}>
-                      <button className={`accordion-item${open ? ' active' : ''}`} onClick={() => setAccordionOpen(open ? -1 : idx)}>
+                      <button
+                        className={`accordion-item${open ? ' active' : ''}`}
+                        onClick={() => setAccordionOpen(open ? -1 : idx)}
+                      >
                         <span>{item.title}</span>
                         <span className="accordion-icon">+</span>
                       </button>
-                      <div className={`accordion-content${open ? ' open' : ''}`}>{item.content}</div>
+                      <div
+                        className={`accordion-content${open ? ' open' : ''}`}
+                      >
+                        {item.content}
+                      </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -171,41 +196,52 @@ export default function SlideRenderer({
             <>
               <div className="quiz-grid quiz-grid-4">
                 {slide.questions.map((question, questionIndex) => {
-                  const selected = quizAnswers[questionIndex]
-                  const answered = selected != null
+                  const selected = quizAnswers[questionIndex];
+                  const answered = selected != null;
                   return (
-                    <article className={`quiz-card glass reveal${answered ? ' answered' : ''}`} key={question.title}>
+                    <article
+                      className={`quiz-card glass reveal${answered ? ' answered' : ''}`}
+                      key={question.title}
+                    >
                       <h3>{question.title}</h3>
                       <p>{question.question}</p>
                       <div className="quiz-actions">
                         {question.answers.map((answer, answerIndex) => {
-                          const isSelected = selected === answerIndex
-                          const selectionClass = answered && isSelected
-                            ? answer.correct
-                              ? ' selected-correct'
-                              : ' selected-wrong'
-                            : answered
-                            ? ' is-disabled'
-                            : ''
+                          const isSelected = selected === answerIndex;
+                          const selectionClass =
+                            answered && isSelected
+                              ? answer.correct
+                                ? ' selected-correct'
+                                : ' selected-wrong'
+                              : answered
+                                ? ' is-disabled'
+                                : '';
                           return (
                             <button
                               key={answer.label}
                               className={`btn ${answerIndex === 0 ? 'btn-secondary' : 'btn-primary'} quiz-answer${selectionClass}`}
                               disabled={answered}
-                              onClick={() => onQuizAnswer(questionIndex, answerIndex, question)}
+                              onClick={() =>
+                                onQuizAnswer(
+                                  questionIndex,
+                                  answerIndex,
+                                  question
+                                )
+                              }
                             >
                               {answer.label}
                             </button>
-                          )
+                          );
                         })}
                       </div>
                     </article>
-                  )
+                  );
                 })}
               </div>
 
               <div className="score-box glass reveal">
-                <strong>Punkte:</strong> <span id="scoreValue">{quizScore}</span> / {totalQuizQuestions}
+                <strong>Punkte:</strong>{' '}
+                <span id="scoreValue">{quizScore}</span> / {totalQuizQuestions}
               </div>
             </>
           )}
@@ -220,11 +256,15 @@ export default function SlideRenderer({
                   </article>
                 ))}
               </div>
-              <ActionButtons actions={slide.actions} extraClass="restart-space" onAction={onAction} />
+              <ActionButtons
+                actions={slide.actions}
+                extraClass="restart-space"
+                onAction={onAction}
+              />
             </>
           )}
         </div>
       </div>
     </section>
-  )
+  );
 }

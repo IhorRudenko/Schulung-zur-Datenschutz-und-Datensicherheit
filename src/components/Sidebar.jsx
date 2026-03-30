@@ -18,7 +18,11 @@ export default function Sidebar({
         ☰
       </button>
 
-      <aside className="sidebar glass" id="sidebar" aria-label="Seitennavigation">
+      <aside
+        className="sidebar glass"
+        id="sidebar"
+        aria-label="Seitennavigation"
+      >
         <div className="sidebar-top">
           <div className="brand">
             <img src="/images/main-icon.png" width="60" alt="Icon" />
@@ -51,12 +55,17 @@ export default function Sidebar({
         </nav>
 
         <div className="sidebar-footer">
-          <button className="theme-toggle" id="themeToggle" aria-label="Design umschalten" onClick={onToggleTheme}>
+          <button
+            className="theme-toggle"
+            id="themeToggle"
+            aria-label="Design umschalten"
+            onClick={onToggleTheme}
+          >
             <span>{lightTheme ? '☀️' : '🌙'}</span>
             <span>Theme</span>
           </button>
         </div>
       </aside>
     </>
-  )
+  );
 }
