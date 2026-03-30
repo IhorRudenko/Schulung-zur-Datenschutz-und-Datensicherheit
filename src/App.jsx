@@ -23,14 +23,19 @@ export default function App() {
   });
   const [quizAnswers, setQuizAnswers] = useState(initialAnswers);
 
-  const goToSlide = useCallback((index) => {
-    if (index < 0 || index >= slides.length || index === current) return;
-    setCurrent(index);
-    requestAnimationFrame(() => {
-      const scrollArea = document.querySelector('.slide.active .slide-scroll');
-      if (scrollArea) scrollArea.scrollTop = 0;
-    });
-  }, [current]);
+  const goToSlide = useCallback(
+    (index) => {
+      if (index < 0 || index >= slides.length || index === current) return;
+      setCurrent(index);
+      requestAnimationFrame(() => {
+        const scrollArea = document.querySelector(
+          '.slide.active .slide-scroll'
+        );
+        if (scrollArea) scrollArea.scrollTop = 0;
+      });
+    },
+    [current]
+  );
 
   useEffect(() => {
     document.body.classList.toggle('light', lightTheme);
