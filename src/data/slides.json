@@ -1,0 +1,225 @@
+[
+  {
+    "id": "start",
+    "navTitle": "Start",
+    "eyebrow": "Schulung • Interaktiv • Modern",
+    "title": "Schulung zur <span>Datenschutz</span> und <span>Datensicherheit</span>",
+    "lead": "Nutze diese Vorlage für eine moderne, klickbare Schulung mit Übergängen, Quiz, Popups, Karten, Accordions und klarer Storyline.",
+    "type": "hero",
+    "actions": [
+      {
+        "label": "Schulung starten",
+        "action": "next",
+        "variant": "primary"
+      },
+      {
+        "label": "Zum Quiz",
+        "action": "jump",
+        "target": 6,
+        "variant": "secondary"
+      }
+    ]
+  },
+  {
+    "id": "lernziele",
+    "navTitle": "Lernziele",
+    "eyebrow": "01 • Lernziele",
+    "title": "Cyber Security – Grundlagen",
+    "type": "grid_two",
+    "cards": [
+      {
+        "title": "Verstehen",
+        "list": [
+          "Unterschied zwischen Datenschutz und Datensicherheit",
+          "Bedeutung personenbezogener Daten im Berufsalltag",
+          "Typische Sicherheitsrisiken im Unternehmen"
+        ]
+      },
+      {
+        "title": "Anwenden",
+        "list": [
+          "Sichere Passwörter und MFA korrekt einsetzen",
+          "Phishing erkennen und richtig reagieren",
+          "Daten sparsam und verantwortungsvoll verarbeiten"
+        ]
+      }
+    ],
+    "image": "/images/img-1.png",
+    "imageAlt": "Illustration Lernziele"
+  },
+  {
+    "id": "grundlagen",
+    "navTitle": "Grundlagen",
+    "eyebrow": "02 • Grundlagen",
+    "title": "CIA-Prinzip der Cyber Security",
+    "type": "comparison",
+    "comparison": [
+      {
+        "title": "Datenschutz",
+        "text": "Fokus auf Personenbezug und rechtmäßige Verarbeitung. Ziel ist der Schutz der Privatsphäre.",
+        "tags": ["Recht", "Einwilligung", "Transparenz"]
+      },
+      {
+        "title": "Datensicherheit",
+        "text": "Fokus auf Verfügbarkeit, Integrität und Vertraulichkeit von Daten und Systemen.",
+        "tags": ["Backups", "Passwörter", "Verschlüsselung"]
+      }
+    ],
+    "factTitle": "Merksatz:",
+    "factText": "Datenschutz fragt: „Darf ich das?“ — Datensicherheit fragt: „Ist das geschützt?“"
+  },
+  {
+    "id": "risiken",
+    "navTitle": "Risiken",
+    "eyebrow": "03 • Risiken",
+    "title": "Typische Cyber-Bedrohungen",
+    "type": "cards_timeline",
+    "cards": [
+      {
+        "icon": "🎣",
+        "title": "Phishing",
+        "text": "Gefälschte E-Mails, Login-Seiten oder Anhänge sollen Zugangsdaten stehlen."
+      },
+      {
+        "icon": "🔐",
+        "title": "Schwache Passwörter",
+        "text": "Unsichere oder mehrfach genutzte Passwörter erhöhen das Risiko massiv."
+      },
+      {
+        "icon": "💾",
+        "title": "Datenverlust",
+        "text": "Fehlende Backups, versehentliches Löschen oder defekte Geräte führen zu Schäden."
+      }
+    ],
+    "timeline": [
+      "Angriff kommt per Mail, Chat oder USB-Stick.",
+      "Nutzer klickt oder gibt Daten unbewusst preis.",
+      "Daten werden kopiert, verschlüsselt oder manipuliert."
+    ]
+  },
+  {
+    "id": "massnahmen",
+    "navTitle": "Maßnahmen",
+    "eyebrow": "04 • Maßnahmen",
+    "title": "Regeln für Mitarbeiter",
+    "type": "accordion_stats",
+    "accordion": [
+      {
+        "title": "Starke Passwörter & MFA",
+        "content": "Nutze lange, einzigartige Passwörter und wenn möglich Multi-Faktor-Authentifizierung."
+      },
+      {
+        "title": "Clean Desk & Bildschirmsperre",
+        "content": "Keine sensiblen Unterlagen offen liegen lassen und Bildschirm sperren, wenn du den Platz verlässt."
+      },
+      {
+        "title": "Updates & Backups",
+        "content": "Systeme aktuell halten und regelmäßige Backups testen, damit Daten im Ernstfall wiederhergestellt werden können."
+      }
+    ],
+    "stats": [
+      {
+        "value": "3-2-1",
+        "label": "Backup-Regel"
+      },
+      {
+        "value": "MFA",
+        "label": "für wichtige Accounts"
+      },
+      {
+        "value": "Need-to-know",
+        "label": "Zugriffe begrenzen"
+      }
+    ]
+  },
+  {
+    "id": "praxisfall",
+    "navTitle": "Praxisfall",
+    "eyebrow": "05 • Praxisfall",
+    "title": "Social Engineering Beispiel",
+    "type": "scenario",
+    "scenarioTitle": "Fallbeispiel: Verdächtige E-Mail",
+    "scenarioText": "Du bekommst eine Nachricht von einer angeblichen Kollegin mit dem Betreff: „Dringend: Bitte Kundendaten prüfen“. Im Anhang befindet sich eine Datei.",
+    "choices": [
+      {
+        "label": "Erst prüfen und melden",
+        "type": "good",
+        "modalTitle": "Gute Entscheidung",
+        "modalText": "Richtig: Erst Absender prüfen, Link/Anhang nicht sofort öffnen und intern nachfragen oder IT informieren."
+      },
+      {
+        "label": "Sofort öffnen",
+        "type": "bad",
+        "modalTitle": "Riskant",
+        "modalText": "Nicht ideal: Ein unüberlegter Klick auf Anhang oder Link kann Schadsoftware oder Datendiebstahl auslösen."
+      }
+    ],
+    "image": "/images/img-2.jpeg",
+    "imageAlt": "Illustration Social Engineering"
+  },
+  {
+    "id": "quiz",
+    "navTitle": "Quiz",
+    "eyebrow": "06 • Quiz",
+    "title": "Cyber Security Quiz",
+    "type": "quiz",
+    "questions": [
+      {
+        "title": "Frage 1",
+        "question": "Ist das Passwort 123456 sicher?",
+        "answers": [
+          {
+            "label": "Ja",
+            "correct": false
+          },
+          {
+            "label": "Nein",
+            "correct": true
+          }
+        ]
+      },
+      {
+        "title": "Frage 2",
+        "question": "Sollte man sensible Daten an jede Person im Unternehmen weiterleiten?",
+        "answers": [
+          {
+            "label": "Ja",
+            "correct": false
+          },
+          {
+            "label": "Nein",
+            "correct": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "abschluss",
+    "navTitle": "Abschluss",
+    "eyebrow": "07 • Abschluss",
+    "title": "Zusammenfassung",
+    "type": "summary",
+    "summaryCards": [
+      {
+        "title": "Denken vor dem Klicken",
+        "text": "Links, Absender und Anhänge immer kurz prüfen."
+      },
+      {
+        "title": "Daten nur wenn nötig",
+        "text": "So wenig personenbezogene Daten wie möglich verarbeiten und teilen."
+      },
+      {
+        "title": "Sicherheit ist Teamarbeit",
+        "text": "Unsicherheiten melden und Sicherheitsregeln im Alltag konsequent anwenden."
+      }
+    ],
+    "actions": [
+      {
+        "label": "Neu starten",
+        "action": "restart",
+        "variant": "primary"
+      }
+    ]
+  }
+]
