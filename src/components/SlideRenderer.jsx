@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function ActionButtons({ actions, extraClass = '', onAction }) {
   if (!actions?.length) return null;
   return (
@@ -15,13 +17,25 @@ function ActionButtons({ actions, extraClass = '', onAction }) {
   );
 }
 
+ActionButtons.propTypes = {
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      action: PropTypes.string.isRequired,
+      target: PropTypes.string,
+      variant: PropTypes.string,
+    })
+  ).isRequired,
+  extraClass: PropTypes.string,
+  onAction: PropTypes.func.isRequired,
+};
+
 function renderMarkup(text) {
   return { __html: text };
 }
 
 export default function SlideRenderer({
   slide,
-  index,
   isActive,
   accordionOpen,
   setAccordionOpen,
@@ -32,8 +46,6 @@ export default function SlideRenderer({
   quizScore,
   totalQuizQuestions,
 }) {
-  const quizOffset = 0;
-
   return (
     <section
       className={`slide${isActive ? ' active' : ''}`}
@@ -268,3 +280,37 @@ export default function SlideRenderer({
     </section>
   );
 }
+
+SlideRenderer.propTypes = {
+  slide: PropTypes.shape({
+    navTitle: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    eyebrow: PropTypes.string,
+    title: PropTypes.string,
+    lead: PropTypes.string,
+    actions: PropTypes.array,
+    cards: PropTypes.array,
+    image: PropTypes.string,
+    imageAlt: PropTypes.string,
+    comparison: PropTypes.array,
+    factTitle: PropTypes.string,
+    factText: PropTypes.string,
+    timeline: PropTypes.array,
+    accordion: PropTypes.array,
+    stats: PropTypes.array,
+    scenarioTitle: PropTypes.string,
+    scenarioText: PropTypes.string,
+    choices: PropTypes.array,
+    questions: PropTypes.array,
+    summaryCards: PropTypes.array,
+  }).isRequired,
+  isActive: PropTypes.bool,
+  accordionOpen: PropTypes.number,
+  setAccordionOpen: PropTypes.func,
+  onAction: PropTypes.func,
+  onScenarioChoice: PropTypes.func,
+  onQuizAnswer: PropTypes.func,
+  quizAnswers: PropTypes.object,
+  quizScore: PropTypes.number,
+  totalQuizQuestions: PropTypes.number,
+};

@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
+
 export default function Sidebar({
   slides,
   current,
-  sidebarOpen,
   onToggle,
   onNavigate,
   lightTheme,
@@ -69,3 +70,17 @@ export default function Sidebar({
     </>
   );
 }
+
+Sidebar.propTypes = {
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      navTitle: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  current: PropTypes.number.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+  lightTheme: PropTypes.bool.isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
+};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function ProgressBar({ progress }) {
   return (
     <div className="progress-wrap" aria-hidden="true">
@@ -9,3 +11,7 @@ export default function ProgressBar({ progress }) {
     </div>
   );
 }
+
+ProgressBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+};

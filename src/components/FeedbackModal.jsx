@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function FeedbackModal({ modal, onClose }) {
   return (
     <div
@@ -47,3 +49,13 @@ export default function FeedbackModal({ modal, onClose }) {
     </div>
   );
 }
+
+FeedbackModal.propTypes = {
+  modal: PropTypes.shape({
+    open: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    text: PropTypes.string,
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+};
