@@ -42,11 +42,19 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(105, 211, 176, 0.18), transparent 28%),
-    radial-gradient(circle at top right, rgba(87, 162, 255, 0.16), transparent 24%),
+    radial-gradient(
+      circle at top left,
+      rgba(105, 211, 176, 0.18),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(87, 162, 255, 0.16),
+      transparent 24%
+    ),
     linear-gradient(145deg, var(--bg), var(--bg-soft));
   overflow: hidden;
 }
@@ -106,7 +114,12 @@ button {
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--primary-2), var(--accent));
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary-2),
+    var(--accent)
+  );
   transition: width 0.4s ease;
 }
 
@@ -138,11 +151,6 @@ button {
   min-width: 0;
 }
 
-.brand img {
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.12);
-}
-
 .brand strong,
 .brand span {
   display: block;
@@ -157,19 +165,36 @@ button {
 
 .dot-nav {
   display: grid;
-  gap: 10px;
+  gap: 6px;
   overflow: auto;
-  padding-right: 4px;
+  padding-right: 2px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dot-nav::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .nav-group {
-  border-radius: 18px;
-  padding: 4px;
-  transition: background 0.25s ease;
+  border-radius: 16px;
+  padding: 0;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  border: 1px solid transparent;
 }
 
 .nav-group.active {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.nav-group.expanded {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .dot-link,
@@ -193,17 +218,25 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 11px;
   color: var(--muted);
   background: transparent;
-  border-radius: 14px;
-  transition: 0.25s ease;
+  border-radius: 15px;
+  transition:
+    0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dot-link > span:nth-child(2) {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .dot-link:hover,
 .dot-link.active {
   color: var(--text);
-  background: var(--surface-strong);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .dot-link .dot {
@@ -214,25 +247,54 @@ button {
   flex: 0 0 auto;
 }
 
+.nav-caret {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.92;
+}
+
 .sub-nav {
   display: grid;
-  gap: 6px;
-  padding: 6px 8px 6px 31px;
+  gap: 4px;
+  padding: 0 8px 0 31px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-6px);
+  transition:
+    max-height 0.28s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    padding 0.2s ease;
+}
+
+.nav-group.expanded .sub-nav {
+  max-height: 320px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 4px 8px 8px 31px;
 }
 
 .sub-link {
   color: var(--muted);
-  background: transparent;
-  border-left: 1px solid var(--line);
-  padding: 4px 0 4px 12px;
-  font-size: 0.83rem;
-  line-height: 1.35;
-  transition: 0.2s ease;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 10px 10px 0;
+  padding: 5px 8px 5px 12px;
+  font-size: 0.81rem;
+  line-height: 1.3;
+  transition:
+    0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .sub-link:hover {
   color: var(--text);
   border-left-color: var(--primary);
+  background: rgba(255, 255, 255, 0.08);
   transform: translateX(3px);
 }
 
@@ -243,7 +305,7 @@ button {
   justify-content: center;
   gap: 8px;
   color: var(--text);
-  background: var(--surface-strong);
+  background: rgb(68 84 93);
   border-radius: 14px;
 }
 
@@ -255,6 +317,10 @@ button {
 .sidebar-toggle {
   width: 42px;
   height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
 
 .sidebar-toggle.floating {
@@ -262,6 +328,7 @@ button {
   left: 18px;
   top: 18px;
   z-index: 21;
+  font-size: 26px;
 }
 
 body:not(.sidebar-collapsed) .sidebar-toggle.floating {
@@ -582,7 +649,7 @@ body.sidebar-collapsed .sidebar-toggle.inside {
 }
 
 .check-list li::before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 9px;
   top: 0;
@@ -605,7 +672,10 @@ body.sidebar-collapsed .sidebar-toggle.inside {
 .btn {
   border-radius: 16px;
   padding: 13px 18px;
-  transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
 }
 
 .btn:hover,

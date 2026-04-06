@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Sidebar({
@@ -8,6 +9,8 @@ export default function Sidebar({
   lightTheme,
   onToggleTheme,
 }) {
+  const [openGroup, setOpenGroup] = useState(null);
+
   return (
     <>
       <button
@@ -47,14 +50,28 @@ export default function Sidebar({
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`nav-group${index === current ? ' active' : ''}`}
+              className={`nav-group${index === current ? ' active' : ''}${
+                openGroup === slide.id ? ' expanded' : ''
+              }`}
             >
               <button
                 className={`dot-link${index === current ? ' active' : ''}`}
-                onClick={() => onNavigate(index)}
+                onClick={() => {
+                  if (slide.children?.length) {
+                    setOpenGroup((group) =>
+                      group === slide.id ? null : slide.id
+                    );
+                  }
+                  onNavigate(index);
+                }}
               >
                 <span className="dot"></span>
                 <span>{slide.navTitle}</span>
+                {slide.children?.length ? (
+                  <span className="nav-caret" aria-hidden="true">
+                    {openGroup === slide.id ? '−' : '+'}
+                  </span>
+                ) : null}
               </button>
 
               {slide.children?.length ? (
