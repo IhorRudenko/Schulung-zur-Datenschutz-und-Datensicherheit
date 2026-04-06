@@ -22,7 +22,7 @@ ActionButtons.propTypes = {
     PropTypes.shape({
       label: PropTypes.string.isRequired,
       action: PropTypes.string.isRequired,
-      target: PropTypes.string,
+      target: PropTypes.number,
       variant: PropTypes.string,
     })
   ).isRequired,
@@ -34,13 +34,73 @@ function renderMarkup(text) {
   return { __html: text };
 }
 
+function renderSectionBody(section) {
+  return (
+    <div className="section-body">
+      {section.paragraphs?.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+
+      {section.bullets?.length ? (
+        <ul className="check-list compact">
+          {section.bullets.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : null}
+
+      {section.cards?.length ? (
+        <div className="mini-grid">
+          {section.cards.map((card) => (
+            <article className="mini-card glass" key={card.title}>
+              <h4>{card.title}</h4>
+              <p>{card.text}</p>
+            </article>
+          ))}
+        </div>
+      ) : null}
+
+      {section.comparison?.length ? (
+        <div className="comparison comparison-inline">
+          {section.comparison.map((item) => (
+            <article className="panel glass" key={item.title}>
+              <h4>{item.title}</h4>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      ) : null}
+
+      {section.columns?.length ? (
+        <div className="dual-list-grid">
+          {section.columns.map((column) => (
+            <article className="mini-card glass" key={column.title}>
+              <h4>{column.title}</h4>
+              <ul className="check-list compact">
+                {column.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      ) : null}
+
+      {section.note ? <div className="section-note">{section.note}</div> : null}
+    </div>
+  );
+}
+
+renderSectionBody.propTypes = {
+  section: PropTypes.object,
+};
+
 export default function SlideRenderer({
   slide,
   isActive,
   accordionOpen,
   setAccordionOpen,
   onAction,
-  onScenarioChoice,
   onQuizAnswer,
   quizAnswers,
   quizScore,
@@ -65,6 +125,15 @@ export default function SlideRenderer({
                   dangerouslySetInnerHTML={renderMarkup(slide.title)}
                 />
                 <p className="lead reveal">{slide.lead}</p>
+
+                <div className="hero-overview reveal">
+                  {slide.overview?.map((item) => (
+                    <span className="hero-pill" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
                 <ActionButtons
                   actions={slide.actions}
                   extraClass="restart-space"
@@ -72,134 +141,64 @@ export default function SlideRenderer({
                 />
               </>
             ) : (
-              <h2>{slide.title}</h2>
+              <>
+                <h2>{slide.title}</h2>
+                {slide.intro ? <p className="lead section-lead">{slide.intro}</p> : null}
+              </>
             )}
           </div>
 
-          {slide.type === 'grid_two' && (
+          {slide.type === 'content' && (
             <>
-              <div className="grid cols-2">
-                {slide.cards.map((card) => (
-                  <article className="panel glass reveal" key={card.title}>
-                    <h3>{card.title}</h3>
-                    <ul className="check-list">
-                      {card.list.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
-              </div>
-
-              <div className="image-placeholder glass reveal">
-                <img className="image" src={slide.image} alt={slide.imageAlt} />
-              </div>
-            </>
-          )}
-
-          {slide.type === 'comparison' && (
-            <>
-              <div className="comparison">
-                {slide.comparison.map((item) => (
-                  <article className="panel glass reveal tilt" key={item.title}>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                    <div className="tag-row">
-                      {item.tags.map((tag) => (
-                        <span className="tag" key={tag}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-
-              <div className="fact-strip glass reveal">
-                <strong>{slide.factTitle}</strong>
-                <span>{slide.factText}</span>
-              </div>
-            </>
-          )}
-
-          {slide.type === 'cards_timeline' && (
-            <>
-              <div className="cards-3">
-                {slide.cards.map((card) => (
-                  <article className="panel glass reveal" key={card.title}>
-                    <div className="icon">{card.icon}</div>
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
-                  </article>
-                ))}
-              </div>
-
-              <div className="timeline reveal">
-                {slide.timeline.map((item, idx) => (
-                  <div className="timeline-item" key={item}>
-                    <span>{idx + 1}</span>
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {slide.type === 'accordion_stats' && (
-            <>
-              <div className="accordion reveal">
-                {slide.accordion.map((item, idx) => {
-                  const open = accordionOpen === idx;
-                  return (
-                    <div key={item.title}>
-                      <button
-                        className={`accordion-item${open ? ' active' : ''}`}
-                        onClick={() => setAccordionOpen(open ? -1 : idx)}
-                      >
-                        <span>{item.title}</span>
-                        <span className="accordion-icon">+</span>
-                      </button>
-                      <div
-                        className={`accordion-content${open ? ' open' : ''}`}
-                      >
-                        {item.content}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="stat-grid">
-                {slide.stats.map((stat) => (
-                  <article className="stat glass reveal" key={stat.value}>
-                    <strong>{stat.value}</strong>
-                    <span>{stat.label}</span>
-                  </article>
-                ))}
-              </div>
-            </>
-          )}
-
-          {slide.type === 'scenario' && (
-            <>
-              <div className="scenario glass reveal">
-                <h3>{slide.scenarioTitle}</h3>
-                <p>{slide.scenarioText}</p>
-                <div className="scenario-actions">
-                  {slide.choices.map((choice) => (
-                    <button
-                      key={choice.label}
-                      className={`choice ${choice.type}`}
-                      onClick={() => onScenarioChoice(choice)}
-                    >
-                      {choice.label}
-                    </button>
+              <div className="content-top-grid">
+                <div className="stat-grid content-stats">
+                  {slide.keyFacts?.map((stat) => (
+                    <article className="stat glass reveal" key={stat.value}>
+                      <strong>{stat.value}</strong>
+                      <span>{stat.label}</span>
+                    </article>
                   ))}
                 </div>
+
+                {slide.media ? (
+                  <aside className="media-placeholder glass reveal">
+                    <div className="media-icon" aria-hidden="true">
+                      IMG
+                    </div>
+                    <span className="media-eyebrow">{slide.media.eyebrow}</span>
+                    <h3>{slide.media.title}</h3>
+                    <p>{slide.media.caption}</p>
+                  </aside>
+                ) : null}
               </div>
 
-              <div className="image-placeholder glass reveal">
-                <img className="image" src={slide.image} alt={slide.imageAlt} />
+              <div className="content-accordion reveal">
+                {slide.sections?.map((section) => {
+                  const accordionKey = `${slide.id}:${section.id}`;
+                  const open = accordionOpen === accordionKey;
+
+                  return (
+                    <section
+                      key={section.id}
+                      className={`content-section${open ? ' open' : ''}`}
+                      data-anchor={section.id}
+                    >
+                      <button
+                        className={`accordion-item content-trigger${open ? ' active' : ''}`}
+                        onClick={() =>
+                          setAccordionOpen(open ? null : accordionKey)
+                        }
+                      >
+                        <span>{section.title}</span>
+                        <span className="accordion-icon">{open ? '−' : '+'}</span>
+                      </button>
+
+                      <div className={`accordion-content rich${open ? ' open' : ''}`}>
+                        {renderSectionBody(section)}
+                      </div>
+                    </section>
+                  );
+                })}
               </div>
             </>
           )}
@@ -217,7 +216,7 @@ export default function SlideRenderer({
                     >
                       <h3>{question.title}</h3>
                       <p>{question.question}</p>
-                      <div className="quiz-actions">
+                      <div className="quiz-actions quiz-actions-stack">
                         {question.answers.map((answer, answerIndex) => {
                           const isSelected = selected === answerIndex;
                           const selectionClass =
@@ -231,7 +230,7 @@ export default function SlideRenderer({
                           return (
                             <button
                               key={answer.label}
-                              className={`btn ${answerIndex === 0 ? 'btn-secondary' : 'btn-primary'} quiz-answer${selectionClass}`}
+                              className={`btn btn-secondary quiz-answer${selectionClass}`}
                               disabled={answered}
                               onClick={() =>
                                 onQuizAnswer(
@@ -281,36 +280,59 @@ export default function SlideRenderer({
   );
 }
 
+const sectionShape = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  paragraphs: PropTypes.arrayOf(PropTypes.string),
+  bullets: PropTypes.arrayOf(PropTypes.string),
+  note: PropTypes.string,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ),
+  comparison: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+    })
+  ),
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      items: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ),
+});
+
 SlideRenderer.propTypes = {
   slide: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     navTitle: PropTypes.string,
     type: PropTypes.string.isRequired,
     eyebrow: PropTypes.string,
     title: PropTypes.string,
     lead: PropTypes.string,
+    intro: PropTypes.string,
+    overview: PropTypes.arrayOf(PropTypes.string),
     actions: PropTypes.array,
-    cards: PropTypes.array,
-    image: PropTypes.string,
-    imageAlt: PropTypes.string,
-    comparison: PropTypes.array,
-    factTitle: PropTypes.string,
-    factText: PropTypes.string,
-    timeline: PropTypes.array,
-    accordion: PropTypes.array,
-    stats: PropTypes.array,
-    scenarioTitle: PropTypes.string,
-    scenarioText: PropTypes.string,
-    choices: PropTypes.array,
+    keyFacts: PropTypes.array,
+    sections: PropTypes.arrayOf(sectionShape),
+    media: PropTypes.shape({
+      eyebrow: PropTypes.string,
+      title: PropTypes.string,
+      caption: PropTypes.string,
+    }),
     questions: PropTypes.array,
     summaryCards: PropTypes.array,
   }).isRequired,
   isActive: PropTypes.bool,
-  accordionOpen: PropTypes.number,
+  accordionOpen: PropTypes.string,
   setAccordionOpen: PropTypes.func,
   onAction: PropTypes.func,
-  onScenarioChoice: PropTypes.func,
   onQuizAnswer: PropTypes.func,
-  quizAnswers: PropTypes.object,
+  quizAnswers: PropTypes.array,
   quizScore: PropTypes.number,
   totalQuizQuestions: PropTypes.number,
 };

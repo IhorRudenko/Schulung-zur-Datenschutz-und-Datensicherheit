@@ -29,6 +29,7 @@ export default function Sidebar({
             <img src="/images/main-icon.png" width="60" alt="Icon" />
             <div>
               <strong>Security Training</strong>
+              <span>Datenschutz und Datensicherheit</span>
             </div>
           </div>
 
@@ -44,14 +45,32 @@ export default function Sidebar({
 
         <nav className="dot-nav" id="dotNav">
           {slides.map((slide, index) => (
-            <button
+            <div
               key={slide.id}
-              className={`dot-link${index === current ? ' active' : ''}`}
-              onClick={() => onNavigate(index)}
+              className={`nav-group${index === current ? ' active' : ''}`}
             >
-              <span className="dot"></span>
-              <span>{slide.navTitle}</span>
-            </button>
+              <button
+                className={`dot-link${index === current ? ' active' : ''}`}
+                onClick={() => onNavigate(index)}
+              >
+                <span className="dot"></span>
+                <span>{slide.navTitle}</span>
+              </button>
+
+              {slide.children?.length ? (
+                <div className="sub-nav">
+                  {slide.children.map((child) => (
+                    <button
+                      key={child.id}
+                      className="sub-link"
+                      onClick={() => onNavigate(index, child.id)}
+                    >
+                      {child.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           ))}
         </nav>
 
@@ -62,7 +81,7 @@ export default function Sidebar({
             aria-label="Design umschalten"
             onClick={onToggleTheme}
           >
-            <span>{lightTheme ? '☀️' : '🌙'}</span>
+            <span>{lightTheme ? 'Sun' : 'Moon'}</span>
             <span>Theme</span>
           </button>
         </div>
@@ -76,6 +95,12 @@ Sidebar.propTypes = {
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       navTitle: PropTypes.string.isRequired,
+      children: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+        })
+      ),
     })
   ).isRequired,
   current: PropTypes.number.isRequired,

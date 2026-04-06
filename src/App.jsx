@@ -14,7 +14,8 @@ export default function App() {
   const [current, setCurrent] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1100);
   const [lightTheme, setLightTheme] = useState(false);
-  const [accordionOpen, setAccordionOpen] = useState(0);
+  const [accordionOpen, setAccordionOpen] = useState(null);
+  const [pendingAnchor, setPendingAnchor] = useState(null);
   const [modal, setModal] = useState({
     open: false,
     title: '',
@@ -23,24 +24,48 @@ export default function App() {
   });
   const [quizAnswers, setQuizAnswers] = useState(initialAnswers);
 
+  const scrollToTarget = useCallback((targetId = null) => {
+    const activeSlide = document.querySelector('.slide.active');
+    const scrollArea = activeSlide?.querySelector('.slide-scroll');
+    if (!scrollArea) return;
+
+    if (targetId) {
+      const target = activeSlide.querySelector(`[data-anchor="${targetId}"]`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+    }
+
+    scrollArea.scrollTop = 0;
+  }, []);
+
   const goToSlide = useCallback(
-    (index) => {
-      if (index < 0 || index >= slides.length || index === current) return;
+    (index, targetId = null) => {
+      if (index < 0 || index >= slides.length) return;
+      setPendingAnchor(targetId);
+      if (index === current) {
+        requestAnimationFrame(() => scrollToTarget(targetId));
+        return;
+      }
       setCurrent(index);
-      requestAnimationFrame(() => {
-        const scrollArea = document.querySelector(
-          '.slide.active .slide-scroll'
-        );
-        if (scrollArea) scrollArea.scrollTop = 0;
-      });
     },
-    [current]
+    [current, scrollToTarget]
   );
 
   useEffect(() => {
     document.body.classList.toggle('light', lightTheme);
     document.body.classList.toggle('sidebar-collapsed', !sidebarOpen);
   }, [lightTheme, sidebarOpen]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      scrollToTarget(pendingAnchor);
+      setPendingAnchor(null);
+    }, 60);
+
+    return () => window.clearTimeout(timer);
+  }, [current, pendingAnchor, scrollToTarget]);
 
   useEffect(() => {
     const activeSlide = document.querySelector('.slide.active');
@@ -101,15 +126,11 @@ export default function App() {
     if (action === 'jump') goToSlide(target);
     if (action === 'restart') {
       setQuizAnswers(initialAnswers);
-      setAccordionOpen(0);
+      setAccordionOpen(null);
+      setPendingAnchor(null);
       setCurrent(0);
       setModal({ open: false, title: '', text: '', type: 'info' });
-      requestAnimationFrame(() => {
-        const scrollArea = document.querySelector(
-          '.slide.active .slide-scroll'
-        );
-        if (scrollArea) scrollArea.scrollTop = 0;
-      });
+      requestAnimationFrame(() => scrollToTarget());
     }
   };
 
@@ -152,8 +173,8 @@ export default function App() {
         current={current}
         sidebarOpen={sidebarOpen}
         onToggle={() => setSidebarOpen((s) => !s)}
-        onNavigate={(index) => {
-          goToSlide(index);
+        onNavigate={(index, targetId) => {
+          goToSlide(index, targetId);
           if (window.innerWidth <= 1100) setSidebarOpen(false);
         }}
         lightTheme={lightTheme}
