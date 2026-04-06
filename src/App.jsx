@@ -14,8 +14,9 @@ export default function App() {
   const [current, setCurrent] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1100);
   const [lightTheme, setLightTheme] = useState(false);
-  const [accordionOpen, setAccordionOpen] = useState(null);
+  const [accordionOpen, setAccordionOpen] = useState({});
   const [pendingAnchor, setPendingAnchor] = useState(null);
+  const [activeAnchor, setActiveAnchor] = useState(null);
   const [modal, setModal] = useState({
     open: false,
     title: '',
@@ -32,7 +33,8 @@ export default function App() {
     if (targetId) {
       const target = activeSlide.querySelector(`[data-anchor="${targetId}"]`);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const top = Math.max(target.offsetTop - 12, 0);
+        scrollArea.scrollTo({ top, behavior: 'smooth' });
         return;
       }
     }
@@ -43,9 +45,23 @@ export default function App() {
   const goToSlide = useCallback(
     (index, targetId = null) => {
       if (index < 0 || index >= slides.length) return;
-      setPendingAnchor(targetId);
+      const slide = slides[index];
+      const accordionKey =
+        slide?.type === 'content' && targetId ? `${slide.id}:${targetId}` : null;
+
+      if (accordionKey) {
+        setAccordionOpen((prev) => ({
+          ...prev,
+          [accordionKey]: true,
+        }));
+      }
+
+      setActiveAnchor(targetId);
+      setPendingAnchor(targetId ? { targetId, accordionKey } : null);
       if (index === current) {
-        requestAnimationFrame(() => scrollToTarget(targetId));
+        requestAnimationFrame(() => {
+          window.setTimeout(() => scrollToTarget(targetId), 170);
+        });
         return;
       }
       setCurrent(index);
@@ -59,13 +75,22 @@ export default function App() {
   }, [lightTheme, sidebarOpen]);
 
   useEffect(() => {
+    if (!pendingAnchor) return undefined;
+
+    if (
+      pendingAnchor.accordionKey &&
+      !accordionOpen[pendingAnchor.accordionKey]
+    ) {
+      return undefined;
+    }
+
     const timer = window.setTimeout(() => {
-      scrollToTarget(pendingAnchor);
+      scrollToTarget(pendingAnchor.targetId);
       setPendingAnchor(null);
-    }, 60);
+    }, 170);
 
     return () => window.clearTimeout(timer);
-  }, [current, pendingAnchor, scrollToTarget]);
+  }, [current, pendingAnchor, accordionOpen, scrollToTarget]);
 
   useEffect(() => {
     const activeSlide = document.querySelector('.slide.active');
@@ -126,7 +151,8 @@ export default function App() {
     if (action === 'jump') goToSlide(target);
     if (action === 'restart') {
       setQuizAnswers(initialAnswers);
-      setAccordionOpen(null);
+      setAccordionOpen({});
+      setActiveAnchor(null);
       setPendingAnchor(null);
       setCurrent(0);
       setModal({ open: false, title: '', text: '', type: 'info' });
@@ -171,6 +197,7 @@ export default function App() {
       <Sidebar
         slides={slides}
         current={current}
+        activeAnchor={activeAnchor}
         sidebarOpen={sidebarOpen}
         onToggle={() => setSidebarOpen((s) => !s)}
         onNavigate={(index, targetId) => {

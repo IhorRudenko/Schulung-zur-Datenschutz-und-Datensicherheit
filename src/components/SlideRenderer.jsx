@@ -175,7 +175,7 @@ export default function SlideRenderer({
               <div className="content-accordion reveal">
                 {slide.sections?.map((section) => {
                   const accordionKey = `${slide.id}:${section.id}`;
-                  const open = accordionOpen === accordionKey;
+                  const open = Boolean(accordionOpen[accordionKey]);
 
                   return (
                     <section
@@ -186,7 +186,10 @@ export default function SlideRenderer({
                       <button
                         className={`accordion-item content-trigger${open ? ' active' : ''}`}
                         onClick={() =>
-                          setAccordionOpen(open ? null : accordionKey)
+                          setAccordionOpen((prev) => ({
+                            ...prev,
+                            [accordionKey]: !prev[accordionKey],
+                          }))
                         }
                       >
                         <span>{section.title}</span>
@@ -328,7 +331,7 @@ SlideRenderer.propTypes = {
     summaryCards: PropTypes.array,
   }).isRequired,
   isActive: PropTypes.bool,
-  accordionOpen: PropTypes.string,
+  accordionOpen: PropTypes.objectOf(PropTypes.bool),
   setAccordionOpen: PropTypes.func,
   onAction: PropTypes.func,
   onQuizAnswer: PropTypes.func,

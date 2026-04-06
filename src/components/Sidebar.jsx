@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export default function Sidebar({
   slides,
   current,
+  activeAnchor,
   onToggle,
   onNavigate,
   lightTheme,
@@ -32,7 +33,6 @@ export default function Sidebar({
             <img src="/images/main-icon.png" width="60" alt="Icon" />
             <div>
               <strong>Security Training</strong>
-              <span>Datenschutz und Datensicherheit</span>
             </div>
           </div>
 
@@ -79,7 +79,11 @@ export default function Sidebar({
                   {slide.children.map((child) => (
                     <button
                       key={child.id}
-                      className="sub-link"
+                      className={`sub-link${
+                        index === current && child.id === activeAnchor
+                          ? ' active'
+                          : ''
+                      }`}
                       onClick={() => onNavigate(index, child.id)}
                     >
                       {child.label}
@@ -123,6 +127,7 @@ Sidebar.propTypes = {
     })
   ).isRequired,
   current: PropTypes.number.isRequired,
+  activeAnchor: PropTypes.string,
   onToggle: PropTypes.func.isRequired,
   onNavigate: PropTypes.func.isRequired,
   lightTheme: PropTypes.bool.isRequired,
