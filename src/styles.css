@@ -17,8 +17,12 @@
   --success: #85e6b4;
   --danger: #ff8d8d;
   --shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  --control-bg: rgba(20, 35, 56, 0.92);
+  --control-bg-hover: rgba(32, 52, 80, 0.98);
+  --control-border: rgba(255, 255, 255, 0.08);
   --sidebar-width: clamp(220px, 22vw, 290px);
   --sidebar-gap: 28px;
+  --content-gutter: clamp(18px, 4vw, 20px);
 }
 
 body.light {
@@ -36,6 +40,9 @@ body.light {
   --success: #1fa765;
   --danger: #d14d4d;
   --shadow: 0 24px 60px rgba(32, 71, 118, 0.14);
+  --control-bg: rgba(255, 255, 255, 0.96);
+  --control-bg-hover: rgba(255, 255, 255, 1);
+  --control-border: rgba(16, 44, 79, 0.14);
 }
 
 html,
@@ -274,7 +281,7 @@ button {
   max-height: 320px;
   opacity: 1;
   transform: translateY(0);
-  padding: 4px 8px 8px 31px;
+  padding: 4px 8px 8px 20px;
 }
 
 .sub-link {
@@ -305,13 +312,38 @@ button {
   justify-content: center;
   gap: 8px;
   color: var(--text);
-  background: rgb(68 84 93);
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
   border-radius: 14px;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .theme-toggle {
   width: 100%;
-  padding: 12px;
+  padding: 6px 12px;
+  justify-content: flex-start;
+}
+
+.theme-icon {
+  width: 20px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--accent);
+  flex: 0 0 20px;
+  font-size: 20px;
+}
+
+.theme-toggle:hover,
+.sidebar-toggle:hover {
+  background: var(--control-bg-hover);
+  border-color: color-mix(in srgb, var(--control-border) 65%, var(--primary));
 }
 
 .sidebar-toggle {
@@ -341,6 +373,13 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   pointer-events: none;
 }
 
+body.light .theme-toggle,
+body.light .sidebar-toggle {
+  box-shadow:
+    0 12px 28px rgba(32, 71, 118, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
 .slides {
   position: relative;
   height: 100vh;
@@ -354,16 +393,16 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   inset: 0;
   padding: 26px 28px 22px 0;
   opacity: 0;
-  transform: translateX(42px) scale(0.985);
+  transform: translateX(20px);
   pointer-events: none;
   transition:
     opacity 0.5s ease,
-    transform 0.55s ease;
+    transform 0.5s ease;
 }
 
 .slide.active {
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateX(0);
   pointer-events: auto;
 }
 
@@ -380,6 +419,8 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   max-width: 1300px;
   min-height: 100%;
   margin: 0 auto;
+  width: min(1300px, 100%);
+  padding-inline: var(--content-gutter);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -433,6 +474,7 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+  padding-bottom: 20px;
 }
 
 .hero-pill {
@@ -498,6 +540,16 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   padding: 22px;
 }
 
+.panel,
+.quiz-card,
+.stat,
+.mini-card,
+.media-placeholder,
+.score-box,
+.content-section {
+  box-shadow: none;
+}
+
 .panel p,
 .quiz-card p,
 .mini-card p,
@@ -528,9 +580,7 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   display: grid;
   align-content: start;
   gap: 12px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent),
-    var(--surface);
+  background: var(--surface);
   border-style: dashed;
 }
 
@@ -592,20 +642,17 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  padding: 0 22px;
-  transform: translateY(-8px);
+  padding: 0 10px;
   transition:
-    max-height 0.4s ease,
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    padding 0.3s ease;
+    max-height 0.28s ease,
+    opacity 0.22s ease,
+    padding 0.22s ease;
 }
 
 .accordion-content.open {
   max-height: 1200px;
   opacity: 1;
-  padding: 0 22px 22px;
-  transform: translateY(0);
+  padding: 10px;
 }
 
 .section-body {
@@ -807,10 +854,10 @@ body.sidebar-collapsed .sidebar-toggle.inside {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(10px);
   transition:
-    opacity 0.65s ease,
-    transform 0.65s ease;
+    opacity 0.46s ease,
+    transform 0.52s ease;
 }
 
 .reveal.in {
@@ -866,6 +913,10 @@ body.sidebar-collapsed .sidebar-toggle.inside {
     padding: 18px 16px 86px;
   }
 
+  .slide-inner {
+    padding-inline: clamp(12px, 4vw, 22px);
+  }
+
   .stat-grid,
   .grid.cols-3,
   .quiz-grid.quiz-grid-4,
@@ -897,6 +948,10 @@ body.sidebar-collapsed .sidebar-toggle.inside {
   .nav-arrow {
     width: 48px;
     height: 48px;
+  }
+
+  .slide-inner {
+    padding-inline: 10px;
   }
 
   .slide-arrows {

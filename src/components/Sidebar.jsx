@@ -98,8 +98,10 @@ export default function Sidebar({
             aria-label="Design umschalten"
             onClick={onToggleTheme}
           >
-            <span>{lightTheme ? 'Sun' : 'Moon'}</span>
-            <span>Theme</span>
+            <span className="theme-icon" aria-hidden="true">
+              {lightTheme ? '☀' : '☾'}
+            </span>
+            <span>{lightTheme ? 'Light Theme' : 'Dark Theme'}</span>
           </button>
         </div>
       </aside>

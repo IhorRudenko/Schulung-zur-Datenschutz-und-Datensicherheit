@@ -85,7 +85,7 @@ export default function App() {
     return () => {
       timers.forEach((timer) => window.clearTimeout(timer));
     };
-  }, [current, accordionOpen, quizAnswers]);
+  }, [current]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
