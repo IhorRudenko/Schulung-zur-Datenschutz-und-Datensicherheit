@@ -18,6 +18,14 @@ Build:
 - npm run build
 
 Hinweise:
+
+Code-Qualität:
+- ESLint und Prettier sind konfiguriert für automatische Formatierung
+- Bei Speichern werden Dateien automatisch formatiert (benötigt VS Code Extension "Prettier")
+- Verfügbare Scripts:
+  - npm run lint     -> ESLint prüfen
+  - npm run lint:fix -> ESLint Fehler automatisch beheben
+  - npm run format   -> Alle Dateien mit Prettier formatieren
 - Neue Slides können direkt in src/data/slides.json ergänzt werden.
 - Quiz-Fragen lassen sich dort ebenfalls einfach erweitern.
 - Design und Übergänge bleiben in src/styles.css.

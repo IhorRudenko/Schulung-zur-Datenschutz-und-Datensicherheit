@@ -1,12 +1,17 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 export default function Sidebar({
   slides,
   current,
-  sidebarOpen,
+  activeAnchor,
   onToggle,
   onNavigate,
   lightTheme,
   onToggleTheme,
 }) {
+  const [openGroup, setOpenGroup] = useState(null);
+
   return (
     <>
       <button
@@ -18,7 +23,11 @@ export default function Sidebar({
         ☰
       </button>
 
-      <aside className="sidebar glass" id="sidebar" aria-label="Seitennavigation">
+      <aside
+        className="sidebar glass"
+        id="sidebar"
+        aria-label="Seitennavigation"
+      >
         <div className="sidebar-top">
           <div className="brand">
             <img src="/images/main-icon.png" width="60" alt="Icon" />
@@ -39,24 +48,88 @@ export default function Sidebar({
 
         <nav className="dot-nav" id="dotNav">
           {slides.map((slide, index) => (
-            <button
+            <div
               key={slide.id}
-              className={`dot-link${index === current ? ' active' : ''}`}
-              onClick={() => onNavigate(index)}
+              className={`nav-group${index === current ? ' active' : ''}${
+                openGroup === slide.id ? ' expanded' : ''
+              }`}
             >
-              <span className="dot"></span>
-              <span>{slide.navTitle}</span>
-            </button>
+              <button
+                className={`dot-link${index === current ? ' active' : ''}`}
+                onClick={() => {
+                  if (slide.children?.length) {
+                    setOpenGroup((group) =>
+                      group === slide.id ? null : slide.id
+                    );
+                  }
+                  onNavigate(index);
+                }}
+              >
+                <span className="dot"></span>
+                <span>{slide.navTitle}</span>
+                {slide.children?.length ? (
+                  <span className="nav-caret" aria-hidden="true">
+                    {openGroup === slide.id ? '−' : '+'}
+                  </span>
+                ) : null}
+              </button>
+
+              {slide.children?.length ? (
+                <div className="sub-nav">
+                  {slide.children.map((child) => (
+                    <button
+                      key={child.id}
+                      className={`sub-link${
+                        index === current && child.id === activeAnchor
+                          ? ' active'
+                          : ''
+                      }`}
+                      onClick={() => onNavigate(index, child.id)}
+                    >
+                      {child.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
           ))}
         </nav>
 
         <div className="sidebar-footer">
-          <button className="theme-toggle" id="themeToggle" aria-label="Design umschalten" onClick={onToggleTheme}>
-            <span>{lightTheme ? '☀️' : '🌙'}</span>
-            <span>Theme</span>
+          <button
+            className="theme-toggle"
+            id="themeToggle"
+            aria-label="Design umschalten"
+            onClick={onToggleTheme}
+          >
+            <span className="theme-icon" aria-hidden="true">
+              {lightTheme ? '☀' : '☾'}
+            </span>
+            <span>{lightTheme ? 'Light Theme' : 'Dark Theme'}</span>
           </button>
         </div>
       </aside>
     </>
-  )
+  );
 }
+
+Sidebar.propTypes = {
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      navTitle: PropTypes.string.isRequired,
+      children: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+        })
+      ),
+    })
+  ).isRequired,
+  current: PropTypes.number.isRequired,
+  activeAnchor: PropTypes.string,
+  onToggle: PropTypes.func.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+  lightTheme: PropTypes.bool.isRequired,
+  onToggleTheme: PropTypes.func.isRequired,
+};
