@@ -45,6 +45,7 @@ export default function App() {
   const goToSlide = useCallback(
     (index, targetId = null) => {
       if (index < 0 || index >= slides.length) return;
+
       const slide = slides[index];
       const accordionKey =
         slide?.type === 'content' && targetId ? `${slide.id}:${targetId}` : null;
@@ -58,12 +59,14 @@ export default function App() {
 
       setActiveAnchor(targetId);
       setPendingAnchor(targetId ? { targetId, accordionKey } : null);
+
       if (index === current) {
         requestAnimationFrame(() => {
           window.setTimeout(() => scrollToTarget(targetId), 170);
         });
         return;
       }
+
       setCurrent(index);
     },
     [current, scrollToTarget]
@@ -99,12 +102,9 @@ export default function App() {
     const reveals = [...activeSlide.querySelectorAll('.reveal')];
     const timers = reveals.map((element, idx) => {
       element.classList.remove('in');
-      return window.setTimeout(
-        () => {
-          element.classList.add('in');
-        },
-        70 + idx * 70
-      );
+      return window.setTimeout(() => {
+        element.classList.add('in');
+      }, 70 + idx * 70);
     });
 
     return () => {
@@ -118,11 +118,17 @@ export default function App() {
         setModal((m) => ({ ...m, open: false }));
         return;
       }
-      if (e.key === 'ArrowRight' || e.key === 'PageDown')
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
         goToSlide(current + 1);
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') goToSlide(current - 1);
-      if (e.key.toLowerCase() === 'm') setSidebarOpen((s) => !s);
+      }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        goToSlide(current - 1);
+      }
+      if (e.key.toLowerCase() === 'm') {
+        setSidebarOpen((s) => !s);
+      }
     };
+
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [current, modal.open, goToSlide]);
@@ -131,6 +137,7 @@ export default function App() {
     () => ((current + 1) / slides.length) * 100,
     [current]
   );
+
   const quizScore = useMemo(
     () =>
       slides
@@ -176,13 +183,40 @@ export default function App() {
     next[questionIndex] = answerIndex;
     setQuizAnswers(next);
 
-    const correct = question.answers[answerIndex]?.correct;
+    const correct = Boolean(question.answers[answerIndex]?.correct);
+    const answeredCount = next.filter((answer) => answer != null).length;
+    const nextScore = slides
+      .filter((slide) => slide.type === 'quiz')
+      .flatMap((slide) => slide.questions)
+      .reduce((sum, item, index) => {
+        const selected = next[index];
+        if (selected == null) return sum;
+        return sum + (item.answers[selected]?.correct ? 1 : 0);
+      }, 0);
+
+    if (answeredCount === totalQuizQuestions) {
+      const passedStrongly = nextScore >= Math.ceil(totalQuizQuestions * 0.8);
+      const passedSolid = nextScore >= Math.ceil(totalQuizQuestions * 0.6);
+
+      setModal({
+        open: true,
+        title: 'Testergebnis',
+        text: passedStrongly
+          ? `Sehr stark: ${nextScore} von ${totalQuizQuestions} richtig. Du hast die wichtigsten Inhalte sicher verstanden.`
+          : passedSolid
+            ? `Gutes Ergebnis: ${nextScore} von ${totalQuizQuestions} richtig. Die Grundlagen sitzen, einzelne Punkte kannst du noch vertiefen.`
+            : `Ergebnis: ${nextScore} von ${totalQuizQuestions} richtig. Geh die wichtigsten Abschnitte noch einmal durch und versuche den Test danach erneut.`,
+        type: passedSolid ? 'success' : 'info',
+      });
+      return;
+    }
+
     setModal({
       open: true,
-      title: correct ? 'Richtig beantwortet' : 'Leider nicht richtig',
+      title: correct ? 'Richtig beantwortet' : 'Nicht richtig beantwortet',
       text: correct
-        ? 'Sehr gut. Genau diese Entscheidung stärkt Datenschutz und Datensicherheit.'
-        : 'Nicht ganz. Denk daran: sichere Passwörter und gezielte Zugriffsrechte sind essenziell.',
+        ? 'Die Antwort wurde übernommen. Du kannst direkt mit der nächsten Frage weitermachen.'
+        : 'Die Antwort wurde übernommen. Schau dir die markierte Lösung in der Karte an und geh dann weiter.',
       type: correct ? 'success' : 'danger',
     });
   };

@@ -29,13 +29,6 @@ export default function Sidebar({
         aria-label="Seitennavigation"
       >
         <div className="sidebar-top">
-          <div className="brand">
-            <img src="/images/main-icon.png" width="60" alt="Icon" />
-            <div>
-              <strong>Security Training</strong>
-            </div>
-          </div>
-
           <button
             className="sidebar-toggle inside"
             id="sidebarToggleInside"
@@ -44,6 +37,13 @@ export default function Sidebar({
           >
             ←
           </button>
+
+          <div className="brand">
+            <div>
+              <strong>Security Training</strong>
+            </div>
+            <img src="/images/main-icon.png" width="60" alt="Icon" />
+          </div>
         </div>
 
         <nav className="dot-nav" id="dotNav">

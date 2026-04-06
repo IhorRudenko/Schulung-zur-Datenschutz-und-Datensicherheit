@@ -212,9 +212,17 @@ export default function SlideRenderer({
                 {slide.questions.map((question, questionIndex) => {
                   const selected = quizAnswers[questionIndex];
                   const answered = selected != null;
+                  const answeredCorrectly =
+                    answered && question.answers[selected]?.correct;
                   return (
                     <article
-                      className={`quiz-card glass reveal${answered ? ' answered' : ''}`}
+                      className={`quiz-card glass reveal${answered ? ' answered' : ''}${
+                        answered
+                          ? answeredCorrectly
+                            ? ' is-correct'
+                            : ' is-wrong'
+                          : ''
+                      }`}
                       key={question.title}
                     >
                       <h3>{question.title}</h3>
@@ -228,13 +236,13 @@ export default function SlideRenderer({
                                 ? ' selected-correct'
                                 : ' selected-wrong'
                               : answered
-                                ? ' is-disabled'
+                                ? ' is-locked'
                                 : '';
                           return (
                             <button
                               key={answer.label}
                               className={`btn btn-secondary quiz-answer${selectionClass}`}
-                              disabled={answered}
+                              aria-disabled={answered ? 'true' : 'false'}
                               onClick={() =>
                                 onQuizAnswer(
                                   questionIndex,
@@ -248,6 +256,17 @@ export default function SlideRenderer({
                           );
                         })}
                       </div>
+                      {answered ? (
+                        <div
+                          className={`quiz-feedback${
+                            answeredCorrectly ? ' is-correct' : ' is-wrong'
+                          }`}
+                        >
+                          {answeredCorrectly
+                            ? 'Richtig beantwortet'
+                            : 'Nicht richtig beantwortet'}
+                        </div>
+                      ) : null}
                     </article>
                   );
                 })}
