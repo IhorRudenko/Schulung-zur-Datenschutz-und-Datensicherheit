@@ -143,7 +143,9 @@ export default function SlideRenderer({
             ) : (
               <>
                 <h2>{slide.title}</h2>
-                {slide.intro ? <p className="lead section-lead">{slide.intro}</p> : null}
+                {slide.intro ? (
+                  <p className="lead section-lead">{slide.intro}</p>
+                ) : null}
               </>
             )}
           </div>
@@ -161,13 +163,29 @@ export default function SlideRenderer({
                 </div>
 
                 {slide.media ? (
-                  <aside className="media-placeholder glass reveal">
-                    <div className="media-icon" aria-hidden="true">
-                      IMG
-                    </div>
-                    <span className="media-eyebrow">{slide.media.eyebrow}</span>
-                    <h3>{slide.media.title}</h3>
-                    <p>{slide.media.caption}</p>
+                  <aside
+                    className={`media-placeholder glass reveal${slide.media.image ? ` media-size-${slide.media.size || 'full'}` : ''}`}
+                  >
+                    {slide.media.image ? (
+                      <img
+                        src={slide.media.image}
+                        alt={slide.media.title || 'Slide image'}
+                        className={`media-image media-${slide.media.size || 'full'}`}
+                      />
+                    ) : (
+                      <div className="media-icon" aria-hidden="true">
+                        IMG
+                      </div>
+                    )}
+                    {!slide.media.image && (
+                      <>
+                        <span className="media-eyebrow">
+                          {slide.media.eyebrow}
+                        </span>
+                        <h3>{slide.media.title}</h3>
+                        <p>{slide.media.caption}</p>
+                      </>
+                    )}
                   </aside>
                 ) : null}
               </div>
@@ -193,10 +211,14 @@ export default function SlideRenderer({
                         }
                       >
                         <span>{section.title}</span>
-                        <span className="accordion-icon">{open ? '−' : '+'}</span>
+                        <span className="accordion-icon">
+                          {open ? '−' : '+'}
+                        </span>
                       </button>
 
-                      <div className={`accordion-content rich${open ? ' open' : ''}`}>
+                      <div
+                        className={`accordion-content rich${open ? ' open' : ''}`}
+                      >
                         {renderSectionBody(section)}
                       </div>
                     </section>
@@ -345,6 +367,8 @@ SlideRenderer.propTypes = {
       eyebrow: PropTypes.string,
       title: PropTypes.string,
       caption: PropTypes.string,
+      image: PropTypes.string,
+      size: PropTypes.oneOf(['full', 'half', 'quarter', 'icon']),
     }),
     questions: PropTypes.array,
     summaryCards: PropTypes.array,

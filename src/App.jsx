@@ -48,7 +48,9 @@ export default function App() {
 
       const slide = slides[index];
       const accordionKey =
-        slide?.type === 'content' && targetId ? `${slide.id}:${targetId}` : null;
+        slide?.type === 'content' && targetId
+          ? `${slide.id}:${targetId}`
+          : null;
 
       if (accordionKey) {
         setAccordionOpen((prev) => ({
@@ -96,15 +98,29 @@ export default function App() {
   }, [current, pendingAnchor, accordionOpen, scrollToTarget]);
 
   useEffect(() => {
+    const slide = slides[current];
+    if (slide?.type === 'content' && slide.sections) {
+      const newAccordionOpen = {};
+      slide.sections.forEach((section) => {
+        newAccordionOpen[`${slide.id}:${section.id}`] = true;
+      });
+      setAccordionOpen((prev) => ({ ...prev, ...newAccordionOpen }));
+    }
+  }, [current]);
+
+  useEffect(() => {
     const activeSlide = document.querySelector('.slide.active');
     if (!activeSlide) return undefined;
 
     const reveals = [...activeSlide.querySelectorAll('.reveal')];
     const timers = reveals.map((element, idx) => {
       element.classList.remove('in');
-      return window.setTimeout(() => {
-        element.classList.add('in');
-      }, 70 + idx * 70);
+      return window.setTimeout(
+        () => {
+          element.classList.add('in');
+        },
+        70 + idx * 70
+      );
     });
 
     return () => {

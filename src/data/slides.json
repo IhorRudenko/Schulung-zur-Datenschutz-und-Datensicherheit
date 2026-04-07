@@ -72,7 +72,9 @@
     "media": {
       "eyebrow": "Bildplatzhalter",
       "title": "Titelbild oder kurze Intro-Grafik",
-      "caption": "Hier kann später ein Hero-Motiv oder eine Illustration zur Schulung eingesetzt werden."
+      "caption": "Hier kann später ein Hero-Motiv oder eine Illustration zur Schulung eingesetzt werden.",
+      "image": "/images/einführung/einführung-1.png",
+      "size": "full"
     }
   },
   {
@@ -572,10 +574,7 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": [
-          "Filterung von Datenpaketen",
-          "Erkennung von Angriffen"
-        ]
+        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"]
       },
       {
         "id": "antivirenprogramme",
@@ -583,10 +582,7 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": [
-          "Regelmäßige Updates",
-          "Warnmeldungen ernst nehmen"
-        ]
+        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"]
       },
       {
         "id": "backups",
@@ -607,10 +603,7 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": [
-          "Updates nicht ignorieren",
-          "Systeme aktuell halten"
-        ]
+        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"]
       }
     ],
     "media": {
