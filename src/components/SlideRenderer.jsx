@@ -153,15 +153,6 @@ export default function SlideRenderer({
           {slide.type === 'content' && (
             <>
               <div className="content-top-grid">
-                <div className="stat-grid content-stats">
-                  {slide.keyFacts?.map((stat) => (
-                    <article className="stat glass reveal" key={stat.value}>
-                      <strong>{stat.value}</strong>
-                      <span>{stat.label}</span>
-                    </article>
-                  ))}
-                </div>
-
                 {slide.media ? (
                   <aside
                     className={`media-placeholder glass reveal${slide.media.image ? ` media-size-${slide.media.size || 'full'}` : ''}`}
@@ -368,7 +359,7 @@ SlideRenderer.propTypes = {
       title: PropTypes.string,
       caption: PropTypes.string,
       image: PropTypes.string,
-      size: PropTypes.oneOf(['full', 'half', 'quarter', 'icon']),
+      size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
     }),
     questions: PropTypes.array,
     summaryCards: PropTypes.array,

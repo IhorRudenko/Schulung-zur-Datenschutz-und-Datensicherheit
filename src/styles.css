@@ -634,6 +634,11 @@ body.light .sidebar-toggle {
   max-width: 50%;
 }
 
+.media-two-thirds {
+  width: 66.6667%;
+  max-width: 66.6667%;
+}
+
 .media-quarter {
   width: 25%;
   max-width: 25%;
@@ -648,6 +653,11 @@ body.light .sidebar-toggle {
 .media-size-half {
   grid-column: 1 / -1;
   max-width: 50%;
+}
+
+.media-size-two-thirds {
+  grid-column: 1 / -1;
+  max-width: 66.6667%;
 }
 
 .media-size-quarter {
