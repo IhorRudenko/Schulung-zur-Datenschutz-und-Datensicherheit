@@ -244,7 +244,7 @@ button {
 .dot-link:hover,
 .dot-link.active {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.14);
+  background: var(--control-bg);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
@@ -290,7 +290,7 @@ button {
 .sub-link {
   position: relative;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   padding: 5px 8px 5px 18px;
   font-size: 0.81rem;
@@ -441,6 +441,7 @@ body.light .sidebar-toggle {
   padding-right: 10px;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) transparent;
+  padding-bottom: 80px;
 }
 
 .slide-inner {
@@ -488,7 +489,7 @@ body.light .sidebar-toggle {
 }
 
 .lead {
-  max-width: 880px;
+  /* max-width: 880px; */
   color: var(--text);
   font-size: 1.04rem;
   line-height: 1.75;
@@ -562,7 +563,6 @@ body.light .sidebar-toggle {
 .quiz-card,
 .stat,
 .mini-card,
-.media-placeholder,
 .score-box,
 .modal {
   border-radius: 14px;
@@ -586,7 +586,8 @@ body.light .sidebar-toggle {
 .modal p,
 .section-body p {
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.5;
+  margin: 8px 0;
 }
 
 .stat {
@@ -614,6 +615,7 @@ body.light .sidebar-toggle {
   border-radius: 14px;
   padding: 0;
   overflow: hidden;
+  border-radius: 14px;
 }
 
 .media-image {
@@ -621,27 +623,6 @@ body.light .sidebar-toggle {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
-}
-
-/* Media size variants */
-.media-full {
-  width: 100%;
-  max-width: 100%;
-}
-
-.media-half {
-  width: 50%;
-  max-width: 50%;
-}
-
-.media-two-thirds {
-  width: 66.6667%;
-  max-width: 66.6667%;
-}
-
-.media-quarter {
-  width: 25%;
-  max-width: 25%;
 }
 
 /* Media placeholder size variants */
@@ -710,13 +691,14 @@ body.light .sidebar-toggle {
   align-items: center;
   justify-content: space-between;
   padding: 18px 22px;
-  color: var(--text);
   background: transparent;
   border-radius: 24px;
+  font-size: 18px;
+  color: var(--accent);
 }
 
 .content-trigger.active {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0);
 }
 
 .accordion-icon {
@@ -739,7 +721,7 @@ body.light .sidebar-toggle {
 .accordion-content.open {
   max-height: 1200px;
   opacity: 1;
-  padding: 10px;
+  padding: 10px 15px 15px;
 }
 
 .section-body {
@@ -1005,10 +987,6 @@ body.light .sidebar-toggle {
   .content-top-grid {
     grid-template-columns: 1fr;
   }
-
-  .media-placeholder {
-    min-height: 220px;
-  }
 }
 
 @media (max-width: 1100px) {
@@ -1065,10 +1043,9 @@ body.light .sidebar-toggle {
   .quiz-card,
   .stat,
   .mini-card,
-  .media-placeholder,
   .score-box,
   .modal {
-    padding: 18px;
+    padding: 10px;
   }
 
   .nav-arrow {

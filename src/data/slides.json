@@ -70,9 +70,6 @@
       }
     ],
     "media": {
-      "eyebrow": "Bildplatzhalter",
-      "title": "Titelbild oder kurze Intro-Grafik",
-      "caption": "Hier kann später ein Hero-Motiv oder eine Illustration zur Schulung eingesetzt werden.",
       "image": "/images/einführung/einführung-1.png",
       "size": "full"
     }
@@ -155,9 +152,8 @@
       }
     ],
     "media": {
-      "eyebrow": "Icon-Platzhalter",
-      "title": "Datenschutz-Symbole oder Personenbezug",
-      "caption": "Geeignet wären hier Icons zu Personendaten, Transparenz oder Einwilligung."
+      "image": "/images/datenschutz/datenschutz-1.png",
+      "size": "full"
     }
   },
   {
@@ -220,12 +216,7 @@
         ],
         "note": "Beide Bereiche ergänzen sich und sind gemeinsam notwendig."
       }
-    ],
-    "media": {
-      "eyebrow": "Illustration",
-      "title": "Vergleich Datenschutz vs. Datensicherheit",
-      "caption": "Hier kann später eine einfache Gegenüberstellung oder Infografik eingefügt werden."
-    }
+    ]
   },
   {
     "id": "rechtliche-grundlagen",
@@ -304,9 +295,8 @@
       }
     ],
     "media": {
-      "eyebrow": "Dokument-Platzhalter",
-      "title": "Gesetzes- oder Compliance-Grafik",
-      "caption": "Passend wären hier Symbole für Recht, Prüfung oder Dokumentation."
+      "image": "/images/recht/recht-1.png",
+      "size": "full"
     }
   },
   {
