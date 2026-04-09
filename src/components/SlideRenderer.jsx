@@ -34,59 +34,126 @@ function renderMarkup(text) {
   return { __html: text };
 }
 
-function renderSectionBody(section) {
+function renderSlideMedia(media) {
+  if (!media) return null;
+
+  if (media.images?.length) {
+    const galleryClass = `media-gallery media-gallery-${media.images.length >= 4 ? 'quad' : 'stack'}`;
+
+    return (
+      <aside className={`media-placeholder glass reveal ${galleryClass}`.trim()}>
+        {media.images.map((image, index) => (
+          <figure className="media-gallery-item" key={image.src || index}>
+            <img
+              src={image.src}
+              alt={image.alt || image.title || `Slide image ${index + 1}`}
+              className="media-image media-gallery-image"
+            />
+            {image.title || image.caption ? (
+              <figcaption className="media-gallery-caption">
+                {image.title ? <strong>{image.title}</strong> : null}
+                {image.caption ? <span>{image.caption}</span> : null}
+              </figcaption>
+            ) : null}
+          </figure>
+        ))}
+      </aside>
+    );
+  }
+
   return (
-    <div className="section-body">
-      {section.paragraphs?.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
-
-      {section.bullets?.length ? (
-        <ul className="check-list compact">
-          {section.bullets.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      ) : null}
-
-      {section.cards?.length ? (
-        <div className="mini-grid">
-          {section.cards.map((card) => (
-            <article className="mini-card glass" key={card.title}>
-              <h4>{card.title}</h4>
-              <p>{card.text}</p>
-            </article>
-          ))}
+    <aside
+      className={`media-placeholder glass reveal${media.image ? ` media-size-${media.size || 'full'}` : ''}`}
+    >
+      {media.image ? (
+        <img
+          src={media.image}
+          alt={media.title || 'Slide image'}
+          className={`media-image media-${media.size || 'full'}`}
+        />
+      ) : (
+        <div className="media-icon" aria-hidden="true">
+          IMG
         </div>
-      ) : null}
+      )}
+      {!media.image && (
+        <>
+          <span className="media-eyebrow">{media.eyebrow}</span>
+          <h3>{media.title}</h3>
+          <p>{media.caption}</p>
+        </>
+      )}
+    </aside>
+  );
+}
 
-      {section.comparison?.length ? (
-        <div className="comparison comparison-inline">
-          {section.comparison.map((item) => (
-            <article className="panel glass" key={item.title}>
-              <h4>{item.title}</h4>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      ) : null}
+function renderSectionBody(section) {
+  const hasSectionMedia = Boolean(section.media?.image);
 
-      {section.columns?.length ? (
-        <div className="dual-list-grid">
-          {section.columns.map((column) => (
-            <article className="mini-card glass" key={column.title}>
-              <h4>{column.title}</h4>
-              <ul className="check-list compact">
-                {column.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      ) : null}
+  return (
+    <div className={`section-body${hasSectionMedia ? ' section-body-with-media' : ''}`}>
+      <div className="section-copy">
+        {section.paragraphs?.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
 
-      {section.note ? <div className="section-note">{section.note}</div> : null}
+        {section.bullets?.length ? (
+          <ul className="check-list compact">
+            {section.bullets.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
+
+        {section.cards?.length ? (
+          <div className="mini-grid">
+            {section.cards.map((card) => (
+              <article className="mini-card glass" key={card.title}>
+                <h4>{card.title}</h4>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.comparison?.length ? (
+          <div className="comparison comparison-inline">
+            {section.comparison.map((item) => (
+              <article className="panel glass" key={item.title}>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.columns?.length ? (
+          <div className="dual-list-grid">
+            {section.columns.map((column) => (
+              <article className="mini-card glass" key={column.title}>
+                <h4>{column.title}</h4>
+                <ul className="check-list compact">
+                  {column.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.note ? <div className="section-note">{section.note}</div> : null}
+      </div>
+
+      {hasSectionMedia ? (
+        <aside className="section-side-media">
+          <img
+            src={section.media.image}
+            alt={section.media.alt || section.title}
+            className="media-image section-media-image"
+          />
+        </aside>
+      ) : null}
     </div>
   );
 }
@@ -153,32 +220,7 @@ export default function SlideRenderer({
           {slide.type === 'content' && (
             <>
               <div className="content-top-grid">
-                {slide.media ? (
-                  <aside
-                    className={`media-placeholder glass reveal${slide.media.image ? ` media-size-${slide.media.size || 'full'}` : ''}`}
-                  >
-                    {slide.media.image ? (
-                      <img
-                        src={slide.media.image}
-                        alt={slide.media.title || 'Slide image'}
-                        className={`media-image media-${slide.media.size || 'full'}`}
-                      />
-                    ) : (
-                      <div className="media-icon" aria-hidden="true">
-                        IMG
-                      </div>
-                    )}
-                    {!slide.media.image && (
-                      <>
-                        <span className="media-eyebrow">
-                          {slide.media.eyebrow}
-                        </span>
-                        <h3>{slide.media.title}</h3>
-                        <p>{slide.media.caption}</p>
-                      </>
-                    )}
-                  </aside>
-                ) : null}
+                {renderSlideMedia(slide.media)}
               </div>
 
               <div className="content-accordion reveal">
@@ -339,6 +381,10 @@ const sectionShape = PropTypes.shape({
       items: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
+  media: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+  }),
 });
 
 SlideRenderer.propTypes = {
@@ -359,6 +405,14 @@ SlideRenderer.propTypes = {
       title: PropTypes.string,
       caption: PropTypes.string,
       image: PropTypes.string,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          src: PropTypes.string.isRequired,
+          alt: PropTypes.string,
+          title: PropTypes.string,
+          caption: PropTypes.string,
+        })
+      ),
       size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
     }),
     questions: PropTypes.array,

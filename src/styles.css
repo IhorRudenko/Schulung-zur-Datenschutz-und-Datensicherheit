@@ -729,6 +729,27 @@ body.light .sidebar-toggle {
   gap: 16px;
 }
 
+.section-body-with-media {
+  grid-template-columns: minmax(0, 3fr) minmax(180px, 1fr);
+  align-items: start;
+}
+
+.section-copy {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.section-side-media {
+  width: 100%;
+}
+
+.section-media-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
 .section-body h4,
 .panel h3,
 .mini-card h4,
@@ -986,6 +1007,20 @@ body.light .sidebar-toggle {
 @media (max-width: 1200px) {
   .content-top-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .section-body-with-media {
+    grid-template-columns: 1fr;
+  }
+
+  .section-side-media {
+    order: -1;
+  }
+
+  .section-media-image {
+    max-width: min(100%, 320px);
   }
 }
 

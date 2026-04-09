@@ -358,9 +358,8 @@
       }
     ],
     "media": {
-      "eyebrow": "Diagramm-Platzhalter",
-      "title": "CIA-Triade als grafisches Dreieck",
-      "caption": "Hier lässt sich später eine prägnante Schaubild-Illustration einsetzen."
+      "image": "/images/cyber-security/cyber-security.png",
+      "size": "half"
     }
   },
   {
@@ -422,7 +421,11 @@
           "Trojaner verstecken sich in legitimen Programmen",
           "Ransomware verschlüsselt Daten und fordert Lösegeld"
         ],
-        "note": "Typische Folgen sind Datenverlust und Betriebsstillstand."
+        "note": "Typische Folgen sind Datenverlust und Betriebsstillstand.",
+        "media": {
+          "image": "/images/bedrohungen/malware.png",
+          "alt": "Illustration zu Malware"
+        }
       },
       {
         "id": "phishing",
@@ -435,7 +438,11 @@
           "Aufforderung zur Eingabe sensibler Daten",
           "Unbekannte Links oder Anhänge"
         ],
-        "note": "Absender prüfen und keine unbekannten Links öffnen."
+        "note": "Absender prüfen und keine unbekannten Links öffnen.",
+        "media": {
+          "image": "/images/bedrohungen/phishing.png",
+          "alt": "Illustration zu Phishing"
+        }
       },
       {
         "id": "social-engineering",
@@ -443,14 +450,22 @@
         "paragraphs": [
           "Hier wird nicht die Technik, sondern der Mensch manipuliert.",
           "Ein typisches Beispiel ist CEO-Fraud mit gefälschten Anweisungen von Vorgesetzten."
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/social-engineering.png",
+          "alt": "Illustration zu Social Engineering"
+        }
       },
       {
         "id": "ddos",
         "title": "DDoS-Angriffe",
         "paragraphs": [
           "Sehr viele Anfragen überlasten Server, sodass Systeme langsam werden oder ganz ausfallen."
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/ddos.png",
+          "alt": "Illustration zu DDoS-Angriffen"
+        }
       },
       {
         "id": "weitere-bedrohungen",
@@ -464,7 +479,11 @@
             "title": "Zero-Day-Exploits",
             "text": "Angriffe auf unbekannte Sicherheitslücken."
           }
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/zero-day-exploits.png",
+          "alt": "Illustration zu weiteren Bedrohungen"
+        }
       },
       {
         "id": "insider",
@@ -475,14 +494,14 @@
         "bullets": [
           "absichtlich, zum Beispiel Datendiebstahl",
           "unabsichtlich, zum Beispiel Fehlbedienung"
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/datendiebstahl.png",
+          "alt": "Illustration zu Insider-Bedrohungen"
+        }
       }
     ],
-    "media": {
-      "eyebrow": "Illustration",
-      "title": "Bedrohungskarte oder Warning-Icons",
-      "caption": "Hier können später einzelne Icon-Sets für Malware, Phishing, DDoS und Insider ergänzt werden."
-    }
+    "media": null
   },
   {
     "id": "technische-massnahmen",
@@ -542,7 +561,11 @@
           "Prinzip der minimalen Rechte (Least Privilege)",
           "Passwörter geheim halten",
           "Nur auf notwendige Daten zugreifen"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-1.png",
+          "alt": "Illustration zur Zugriffskontrolle"
+        }
       },
       {
         "id": "verschluesselung",
@@ -556,7 +579,11 @@
           "Schutz vor Datendiebstahl",
           "VPN außerhalb des Unternehmens nutzen",
           "Nur verschlüsselte Datenträger verwenden"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-2.png",
+          "alt": "Illustration zur Verschluesselung"
+        }
       },
       {
         "id": "firewall",
@@ -564,7 +591,14 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"]
+        "bullets": [
+          "Filterung von Datenpaketen",
+          "Erkennung von Angriffen"
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-3.png",
+          "alt": "Illustration zur Firewall"
+        }
       },
       {
         "id": "antivirenprogramme",
@@ -572,7 +606,14 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"]
+        "bullets": [
+          "Regelmäßige Updates",
+          "Warnmeldungen ernst nehmen"
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-4.png",
+          "alt": "Illustration zu Antivirenprogrammen"
+        }
       },
       {
         "id": "backups",
@@ -585,7 +626,11 @@
           "2 unterschiedliche Medien",
           "1 extern gespeichert",
           "Regelmäßige Wiederherstellungstests"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-5.png",
+          "alt": "Illustration zu Backups"
+        }
       },
       {
         "id": "updates-patches",
@@ -593,14 +638,17 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"]
+        "bullets": [
+          "Updates nicht ignorieren",
+          "Systeme aktuell halten"
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-6.png",
+          "alt": "Illustration zu Updates und Patches"
+        }
       }
     ],
-    "media": {
-      "eyebrow": "Grafik-Platzhalter",
-      "title": "Icons für Schutzmaßnahmen",
-      "caption": "Hier passen später kleine Illustrationen zu Firewall, Backup, Update und Verschlüsselung."
-    }
+    "media": null
   },
   {
     "id": "arbeitsalltag",
