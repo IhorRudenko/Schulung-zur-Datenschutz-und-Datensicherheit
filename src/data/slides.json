@@ -591,10 +591,7 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": [
-          "Filterung von Datenpaketen",
-          "Erkennung von Angriffen"
-        ],
+        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"],
         "media": {
           "image": "/images/massnahmen/massnahmen-3.png",
           "alt": "Illustration zur Firewall"
@@ -606,10 +603,7 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": [
-          "Regelmäßige Updates",
-          "Warnmeldungen ernst nehmen"
-        ],
+        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"],
         "media": {
           "image": "/images/massnahmen/massnahmen-4.png",
           "alt": "Illustration zu Antivirenprogrammen"
@@ -638,10 +632,7 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": [
-          "Updates nicht ignorieren",
-          "Systeme aktuell halten"
-        ],
+        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"],
         "media": {
           "image": "/images/massnahmen/massnahmen-6.png",
           "alt": "Illustration zu Updates und Patches"
@@ -690,19 +681,47 @@
         "id": "ausserhalb-arbeitsplatz",
         "title": "Außerhalb des Arbeitsplatzes",
         "bullets": [
-          "Nur offizielle Kontaktwege nutzen",
-          "Öffentliches WLAN möglichst vermeiden",
-          "Wenn nötig: immer VPN verwenden",
-          "Heim-WLAN sicher konfigurieren"
+          {
+            "text": "Nur offizielle Kontaktwege nutzen",
+            "icon": "/images/arbeitsalltag/main.png",
+            "iconAlt": "Standard-Icon"
+          },
+          {
+            "text": "Oeffentliches WLAN moeglichst vermeiden",
+            "icon": "/images/arbeitsalltag/wlan.png",
+            "iconAlt": "WLAN-Icon"
+          },
+          {
+            "text": "Wenn noetig: immer VPN verwenden",
+            "icon": "/images/arbeitsalltag/vpn.png",
+            "iconAlt": "VPN-Icon"
+          },
+          {
+            "text": "Heim-WLAN sicher konfigurieren",
+            "icon": "/images/arbeitsalltag/wlan.png",
+            "iconAlt": "WLAN-Icon"
+          }
         ]
       },
       {
         "id": "allgemeine-sicherheitsregeln",
         "title": "Allgemeine Sicherheitsregeln",
         "bullets": [
-          "Keine unbekannten Geräte anschließen, zum Beispiel USB-Sticks",
-          "Geräte verschlüsselt halten",
-          "Zwei-Faktor-Authentifizierung aktivieren"
+          {
+            "text": "Keine unbekannten Geraete anschliessen, zum Beispiel USB-Sticks",
+            "icon": "/images/arbeitsalltag/usb.png",
+            "iconAlt": "USB-Icon"
+          },
+          {
+            "text": "Geraete verschluesselt halten",
+            "icon": "/images/arbeitsalltag/verschlüsselung.png",
+            "iconAlt": "Verschluesselungs-Icon"
+          },
+          {
+            "text": "Zwei-Faktor-Authentifizierung aktivieren",
+            "icon": "/images/arbeitsalltag/zwei-faktor-authentifizierung.png",
+            "iconAlt": "2FA-Icon"
+          }
         ]
       },
       {
@@ -712,31 +731,66 @@
           {
             "title": "Do's",
             "items": [
-              "Nur notwendige Daten verwenden",
-              "Daten vertraulich behandeln",
-              "Bildschirm sperren",
-              "E-Mails und Links prüfen",
-              "Sicherheitsvorfälle sofort melden"
+              {
+                "text": "Nur notwendige Daten verwenden",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "Daten vertraulich behandeln",
+                "icon": "/images/arbeitsalltag/verschlüsselung.png",
+                "iconAlt": "Verschluesselungs-Icon"
+              },
+              {
+                "text": "Bildschirm sperren",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "E-Mails und Links pruefen",
+                "icon": "/images/arbeitsalltag/verifizierung.png",
+                "iconAlt": "Verifizierungs-Icon"
+              },
+              {
+                "text": "Sicherheitsvorfaelle sofort melden",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              }
             ]
           },
           {
             "title": "Don'ts",
             "items": [
-              "Keine Passwörter teilen",
-              "Keine privaten Geräte ohne Freigabe nutzen",
-              "Keine sensiblen Daten ungeschützt speichern",
-              "Keine unbekannten Links öffnen",
-              "Keine sensiblen Gespräche in der Öffentlichkeit führen"
+              {
+                "text": "Keine Passwoerter teilen",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "Keine privaten Geraete ohne Freigabe nutzen",
+                "icon": "/images/arbeitsalltag/usb.png",
+                "iconAlt": "USB-Icon"
+              },
+              {
+                "text": "Keine sensiblen Daten ungeschuetzt speichern",
+                "icon": "/images/arbeitsalltag/verschlüsselung.png",
+                "iconAlt": "Verschluesselungs-Icon"
+              },
+              {
+                "text": "Keine unbekannten Links oeffnen",
+                "icon": "/images/arbeitsalltag/phishing.png",
+                "iconAlt": "Phishing-Icon"
+              },
+              {
+                "text": "Keine sensiblen Gespraeche in der Oeffentlichkeit fuehren",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              }
             ]
           }
         ]
       }
-    ],
-    "media": {
-      "eyebrow": "Foto-Platzhalter",
-      "title": "Homeoffice, Laptop oder mobiles Arbeiten",
-      "caption": "An dieser Stelle eignet sich später ein Bild zu mobilem Arbeiten oder einem sicheren Arbeitsplatz."
-    }
+    ]
   },
   {
     "id": "passwoerter",

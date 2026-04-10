@@ -34,6 +34,37 @@ function renderMarkup(text) {
   return { __html: text };
 }
 
+function getListItemKey(item, index) {
+  if (typeof item === 'string') return item;
+  return item.text || item.icon || index;
+}
+
+function renderList(items) {
+  return (
+    <ul className="check-list compact">
+      {items.map((item, index) => {
+        const entry = typeof item === 'string' ? { text: item } : item;
+        return (
+          <li
+            key={getListItemKey(item, index)}
+            className={entry.icon ? 'check-list-item-with-icon' : ''}
+          >
+            {entry.icon ? (
+              <img
+                src={entry.icon}
+                alt={entry.iconAlt || ''}
+                className="check-list-icon"
+                aria-hidden={entry.iconAlt ? undefined : 'true'}
+              />
+            ) : null}
+            <span>{entry.text}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 function renderSlideMedia(media) {
   if (!media) return null;
 
@@ -98,11 +129,7 @@ function renderSectionBody(section) {
         ))}
 
         {section.bullets?.length ? (
-          <ul className="check-list compact">
-            {section.bullets.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          renderList(section.bullets)
         ) : null}
 
         {section.cards?.length ? (
@@ -132,11 +159,7 @@ function renderSectionBody(section) {
             {section.columns.map((column) => (
               <article className="mini-card glass" key={column.title}>
                 <h4>{column.title}</h4>
-                <ul className="check-list compact">
-                  {column.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                {renderList(column.items)}
               </article>
             ))}
           </div>
@@ -361,7 +384,16 @@ const sectionShape = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   paragraphs: PropTypes.arrayOf(PropTypes.string),
-  bullets: PropTypes.arrayOf(PropTypes.string),
+  bullets: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        icon: PropTypes.string,
+        iconAlt: PropTypes.string,
+      }),
+    ])
+  ),
   note: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
@@ -378,7 +410,16 @@ const sectionShape = PropTypes.shape({
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(PropTypes.string).isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            icon: PropTypes.string,
+            iconAlt: PropTypes.string,
+          }),
+        ])
+      ).isRequired,
     })
   ),
   media: PropTypes.shape({

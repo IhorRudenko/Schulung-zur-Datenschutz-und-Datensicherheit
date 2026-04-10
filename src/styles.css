@@ -783,6 +783,22 @@ body.light .sidebar-toggle {
   padding-left: 28px;
   color: var(--muted);
   line-height: 1.55;
+  align-items: center;
+}
+
+.check-list-item-with-icon {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding-left: 0;
+}
+
+.check-list-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 .check-list li::before {
@@ -792,6 +808,10 @@ body.light .sidebar-toggle {
   top: 0;
   color: var(--primary);
   font-weight: 800;
+}
+
+.check-list-item-with-icon::before {
+  content: none;
 }
 
 .hero-actions,
