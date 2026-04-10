@@ -533,6 +533,15 @@ body.light .sidebar-toggle {
   margin-top: 28px;
 }
 
+.content-inline-media {
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.summary-media-block {
+  margin-bottom: 24px;
+}
+
 .stat-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -583,11 +592,16 @@ body.light .sidebar-toggle {
 .quiz-card p,
 .mini-card p,
 .media-placeholder p,
-.modal p,
 .section-body p {
   color: var(--muted);
   line-height: 1.5;
   margin: 8px 0;
+}
+
+.modal p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 16px 0;
 }
 
 .stat {

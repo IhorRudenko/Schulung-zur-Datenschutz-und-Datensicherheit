@@ -21,7 +21,7 @@
       {
         "label": "Direkt zum Quiz",
         "action": "jump",
-        "target": 11,
+        "target": 12,
         "variant": "secondary"
       }
     ]
@@ -115,7 +115,11 @@
         "title": "Was ist Datenschutz?",
         "paragraphs": [
           "Datenschutz schützt Menschen, deren Daten verarbeitet werden. Es geht nicht nur um Technik, sondern auch um Rechte, Verantwortung und nachvollziehbare Prozesse."
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datenschutz/datenschutz-2.png",
+          "size": "full"
+        }
       },
       {
         "id": "beispiele-daten",
@@ -126,7 +130,11 @@
           "IP-Adresse",
           "Bankdaten",
           "Gesundheitsdaten"
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datenschutz/datenschutz-1.png",
+          "size": "full"
+        }
       },
       {
         "id": "prinzipien-datenschutz",
@@ -150,11 +158,7 @@
           }
         ]
       }
-    ],
-    "media": {
-      "image": "/images/datenschutz/datenschutz-1.png",
-      "size": "full"
-    }
+    ]
   },
   {
     "id": "datensicherheit",
@@ -199,7 +203,11 @@
           "Schutz vor Manipulation",
           "Schutz vor Diebstahl",
           "Schutz vor unbefugtem Zugriff"
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datensicherheit/datensicherheit.png",
+          "size": "full"
+        }
       },
       {
         "id": "unterschied-ds",
@@ -274,14 +282,22 @@
             "title": "Meldepflicht",
             "text": "Datenschutzverletzungen müssen in der Regel innerhalb von 72 Stunden gemeldet werden."
           }
-        ]
+        ],
+        "media": {
+          "image": "/images/recht/dsgvo.png",
+          "alt": "Illustration zur DSGVO"
+        }
       },
       {
         "id": "bdsg",
         "title": "BDSG",
         "paragraphs": [
           "Das Bundesdatenschutzgesetz ergänzt die DSGVO in Deutschland und konkretisiert nationale Regelungen."
-        ]
+        ],
+        "media": {
+          "image": "/images/recht/bdsg.png",
+          "alt": "Illustration zum BDSG"
+        }
       },
       {
         "id": "pflichten-unternehmen",
@@ -359,7 +375,7 @@
     ],
     "media": {
       "image": "/images/cyber-security/cyber-security.png",
-      "size": "half"
+      "size": "full"
     }
   },
   {
@@ -591,10 +607,7 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": [
-          "Filterung von Datenpaketen",
-          "Erkennung von Angriffen"
-        ],
+        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"],
         "media": {
           "image": "/images/massnahmen/massnahmen-3.png",
           "alt": "Illustration zur Firewall"
@@ -606,10 +619,7 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": [
-          "Regelmäßige Updates",
-          "Warnmeldungen ernst nehmen"
-        ],
+        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"],
         "media": {
           "image": "/images/massnahmen/massnahmen-4.png",
           "alt": "Illustration zu Antivirenprogrammen"
@@ -638,10 +648,7 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": [
-          "Updates nicht ignorieren",
-          "Systeme aktuell halten"
-        ],
+        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"],
         "media": {
           "image": "/images/massnahmen/massnahmen-6.png",
           "alt": "Illustration zu Updates und Patches"
@@ -799,12 +806,7 @@
           }
         ]
       }
-    ],
-    "media": {
-      "eyebrow": "Foto-Platzhalter",
-      "title": "Homeoffice, Laptop oder mobiles Arbeiten",
-      "caption": "An dieser Stelle eignet sich später ein Bild zu mobilem Arbeiten oder einem sicheren Arbeitsplatz."
-    }
+    ]
   },
   {
     "id": "passwoerter",
@@ -1394,6 +1396,10 @@
         "action": "restart",
         "variant": "primary"
       }
-    ]
+    ],
+    "media": {
+      "image": "/images/abschluss/datensicherheit.png",
+      "size": "full"
+    }
   }
 ]

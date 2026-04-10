@@ -124,6 +124,28 @@ function renderSlideMedia(media) {
   );
 }
 
+function getInlineMediaBlocks(slide, sectionId) {
+  const blocks = [];
+
+  if (slide.mediaAfterSectionId === sectionId && slide.media) {
+    blocks.push({
+      key: `${sectionId}-legacy-media`,
+      media: slide.media,
+    });
+  }
+
+  slide.inlineMediaBlocks?.forEach((block, index) => {
+    if (block.afterSectionId === sectionId && block.media) {
+      blocks.push({
+        key: `${sectionId}-inline-media-${index}`,
+        media: block.media,
+      });
+    }
+  });
+
+  return blocks;
+}
+
 function renderSectionBody(section) {
   const hasSectionMedia = Boolean(section.media?.image);
 
@@ -172,6 +194,12 @@ function renderSectionBody(section) {
         ) : null}
 
         {section.note ? <div className="section-note">{section.note}</div> : null}
+
+        {section.inlineMedia ? (
+          <div className="content-top-grid content-inline-media">
+            {renderSlideMedia(section.inlineMedia)}
+          </div>
+        ) : null}
       </div>
 
       {hasSectionMedia ? (
@@ -248,16 +276,17 @@ export default function SlideRenderer({
 
           {slide.type === 'content' && (
             <>
-              <div className="content-top-grid">
-                {renderSlideMedia(slide.media)}
-              </div>
+              {!slide.mediaAfterSectionId ? (
+                <div className="content-top-grid">
+                  {renderSlideMedia(slide.media)}
+                </div>
+              ) : null}
 
               <div className="content-accordion reveal">
                 {slide.sections?.map((section) => {
                   const accordionKey = `${slide.id}:${section.id}`;
                   const open = Boolean(accordionOpen[accordionKey]);
-
-                  return (
+                  const sectionNode = (
                     <section
                       key={section.id}
                       className={`content-section${open ? ' open' : ''}`}
@@ -284,6 +313,20 @@ export default function SlideRenderer({
                         {renderSectionBody(section)}
                       </div>
                     </section>
+                  );
+
+                  return (
+                    <div key={section.id}>
+                      {sectionNode}
+                      {getInlineMediaBlocks(slide, section.id).map((block) => (
+                        <div
+                          className="content-top-grid content-inline-media"
+                          key={block.key}
+                        >
+                          {renderSlideMedia(block.media)}
+                        </div>
+                      ))}
+                    </div>
                   );
                 })}
               </div>
@@ -365,6 +408,10 @@ export default function SlideRenderer({
 
           {slide.type === 'summary' && (
             <>
+              <div className="content-top-grid summary-media-block">
+                {renderSlideMedia(slide.media)}
+              </div>
+
               <div className="grid cols-3">
                 {slide.summaryCards.map((card) => (
                   <article className="panel glass reveal" key={card.title}>
@@ -432,6 +479,21 @@ const sectionShape = PropTypes.shape({
     image: PropTypes.string.isRequired,
     alt: PropTypes.string,
   }),
+  inlineMedia: PropTypes.shape({
+    eyebrow: PropTypes.string,
+    title: PropTypes.string,
+    caption: PropTypes.string,
+    image: PropTypes.string,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string,
+        title: PropTypes.string,
+        caption: PropTypes.string,
+      })
+    ),
+    size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
+  }),
 });
 
 SlideRenderer.propTypes = {
@@ -447,6 +509,27 @@ SlideRenderer.propTypes = {
     actions: PropTypes.array,
     keyFacts: PropTypes.array,
     sections: PropTypes.arrayOf(sectionShape),
+    mediaAfterSectionId: PropTypes.string,
+    inlineMediaBlocks: PropTypes.arrayOf(
+      PropTypes.shape({
+        afterSectionId: PropTypes.string.isRequired,
+        media: PropTypes.shape({
+          eyebrow: PropTypes.string,
+          title: PropTypes.string,
+          caption: PropTypes.string,
+          image: PropTypes.string,
+          images: PropTypes.arrayOf(
+            PropTypes.shape({
+              src: PropTypes.string.isRequired,
+              alt: PropTypes.string,
+              title: PropTypes.string,
+              caption: PropTypes.string,
+            })
+          ),
+          size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
+        }).isRequired,
+      })
+    ),
     media: PropTypes.shape({
       eyebrow: PropTypes.string,
       title: PropTypes.string,
