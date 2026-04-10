@@ -591,7 +591,10 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"],
+        "bullets": [
+          "Filterung von Datenpaketen",
+          "Erkennung von Angriffen"
+        ],
         "media": {
           "image": "/images/massnahmen/massnahmen-3.png",
           "alt": "Illustration zur Firewall"
@@ -603,7 +606,10 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"],
+        "bullets": [
+          "Regelmäßige Updates",
+          "Warnmeldungen ernst nehmen"
+        ],
         "media": {
           "image": "/images/massnahmen/massnahmen-4.png",
           "alt": "Illustration zu Antivirenprogrammen"
@@ -632,7 +638,10 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"],
+        "bullets": [
+          "Updates nicht ignorieren",
+          "Systeme aktuell halten"
+        ],
         "media": {
           "image": "/images/massnahmen/massnahmen-6.png",
           "alt": "Illustration zu Updates und Patches"
@@ -790,7 +799,12 @@
           }
         ]
       }
-    ]
+    ],
+    "media": {
+      "eyebrow": "Foto-Platzhalter",
+      "title": "Homeoffice, Laptop oder mobiles Arbeiten",
+      "caption": "An dieser Stelle eignet sich später ein Bild zu mobilem Arbeiten oder einem sicheren Arbeitsplatz."
+    }
   },
   {
     "id": "passwoerter",
@@ -870,9 +884,8 @@
       }
     ],
     "media": {
-      "eyebrow": "UI-Platzhalter",
-      "title": "Icon-Set für Passwort, 2FA und Passwortmanager",
-      "caption": "Hier können später passende Security-Icons oder ein Login-Mockup ergänzt werden."
+      "image": "/images/passwörter/passwort.png",
+      "size": "full"
     }
   },
   {
@@ -930,12 +943,7 @@
         ],
         "note": "Merksatz: Erkennen – Handeln – Melden."
       }
-    ],
-    "media": {
-      "eyebrow": "Warnhinweis",
-      "title": "Incident- oder Alert-Grafik",
-      "caption": "Hier passt später ein visuelles Warnsymbol oder eine Meldekette als Grafik."
-    }
+    ]
   },
   {
     "id": "cloud-sicherheit",
@@ -1030,9 +1038,17 @@
       }
     ],
     "media": {
-      "eyebrow": "Cloud-Platzhalter",
-      "title": "Cloud-Architektur oder Provider-Logos",
-      "caption": "Hier können später Logos, eine schematische Cloud-Grafik oder ein Sicherheitsdiagramm ergänzt werden."
+      "size": "half",
+      "images": [
+        {
+          "src": "/images/cloud-dienste/cloud-dienste-1.png",
+          "alt": "Cloud-Dienst Illustration 1"
+        },
+        {
+          "src": "/images/cloud-dienste/cloud-dienste-2.png",
+          "alt": "Cloud-Dienst Illustration 2"
+        }
+      ]
     }
   },
   {

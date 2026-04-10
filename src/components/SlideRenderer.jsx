@@ -69,7 +69,13 @@ function renderSlideMedia(media) {
   if (!media) return null;
 
   if (media.images?.length) {
-    const galleryClass = `media-gallery media-gallery-${media.images.length >= 4 ? 'quad' : 'stack'}`;
+    const galleryVariant =
+      media.size === 'half'
+        ? 'half'
+        : media.images.length >= 4
+          ? 'quad'
+          : 'stack';
+    const galleryClass = `media-gallery media-gallery-${galleryVariant}`;
 
     return (
       <aside className={`media-placeholder glass reveal ${galleryClass}`.trim()}>
