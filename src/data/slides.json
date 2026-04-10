@@ -21,7 +21,7 @@
       {
         "label": "Direkt zum Quiz",
         "action": "jump",
-        "target": 11,
+        "target": 12,
         "variant": "secondary"
       }
     ]
@@ -70,9 +70,6 @@
       }
     ],
     "media": {
-      "eyebrow": "Bildplatzhalter",
-      "title": "Titelbild oder kurze Intro-Grafik",
-      "caption": "Hier kann später ein Hero-Motiv oder eine Illustration zur Schulung eingesetzt werden.",
       "image": "/images/einführung/einführung-1.png",
       "size": "full"
     }
@@ -118,7 +115,11 @@
         "title": "Was ist Datenschutz?",
         "paragraphs": [
           "Datenschutz schützt Menschen, deren Daten verarbeitet werden. Es geht nicht nur um Technik, sondern auch um Rechte, Verantwortung und nachvollziehbare Prozesse."
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datenschutz/datenschutz-2.png",
+          "size": "full"
+        }
       },
       {
         "id": "beispiele-daten",
@@ -129,7 +130,11 @@
           "IP-Adresse",
           "Bankdaten",
           "Gesundheitsdaten"
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datenschutz/datenschutz-1.png",
+          "size": "full"
+        }
       },
       {
         "id": "prinzipien-datenschutz",
@@ -153,12 +158,7 @@
           }
         ]
       }
-    ],
-    "media": {
-      "eyebrow": "Icon-Platzhalter",
-      "title": "Datenschutz-Symbole oder Personenbezug",
-      "caption": "Geeignet wären hier Icons zu Personendaten, Transparenz oder Einwilligung."
-    }
+    ]
   },
   {
     "id": "datensicherheit",
@@ -203,7 +203,11 @@
           "Schutz vor Manipulation",
           "Schutz vor Diebstahl",
           "Schutz vor unbefugtem Zugriff"
-        ]
+        ],
+        "inlineMedia": {
+          "image": "/images/datensicherheit/datensicherheit.png",
+          "size": "full"
+        }
       },
       {
         "id": "unterschied-ds",
@@ -220,12 +224,7 @@
         ],
         "note": "Beide Bereiche ergänzen sich und sind gemeinsam notwendig."
       }
-    ],
-    "media": {
-      "eyebrow": "Illustration",
-      "title": "Vergleich Datenschutz vs. Datensicherheit",
-      "caption": "Hier kann später eine einfache Gegenüberstellung oder Infografik eingefügt werden."
-    }
+    ]
   },
   {
     "id": "rechtliche-grundlagen",
@@ -283,14 +282,22 @@
             "title": "Meldepflicht",
             "text": "Datenschutzverletzungen müssen in der Regel innerhalb von 72 Stunden gemeldet werden."
           }
-        ]
+        ],
+        "media": {
+          "image": "/images/recht/dsgvo.png",
+          "alt": "Illustration zur DSGVO"
+        }
       },
       {
         "id": "bdsg",
         "title": "BDSG",
         "paragraphs": [
           "Das Bundesdatenschutzgesetz ergänzt die DSGVO in Deutschland und konkretisiert nationale Regelungen."
-        ]
+        ],
+        "media": {
+          "image": "/images/recht/bdsg.png",
+          "alt": "Illustration zum BDSG"
+        }
       },
       {
         "id": "pflichten-unternehmen",
@@ -304,9 +311,8 @@
       }
     ],
     "media": {
-      "eyebrow": "Dokument-Platzhalter",
-      "title": "Gesetzes- oder Compliance-Grafik",
-      "caption": "Passend wären hier Symbole für Recht, Prüfung oder Dokumentation."
+      "image": "/images/recht/recht-1.png",
+      "size": "full"
     }
   },
   {
@@ -368,9 +374,8 @@
       }
     ],
     "media": {
-      "eyebrow": "Diagramm-Platzhalter",
-      "title": "CIA-Triade als grafisches Dreieck",
-      "caption": "Hier lässt sich später eine prägnante Schaubild-Illustration einsetzen."
+      "image": "/images/cyber-security/cyber-security.png",
+      "size": "full"
     }
   },
   {
@@ -432,7 +437,11 @@
           "Trojaner verstecken sich in legitimen Programmen",
           "Ransomware verschlüsselt Daten und fordert Lösegeld"
         ],
-        "note": "Typische Folgen sind Datenverlust und Betriebsstillstand."
+        "note": "Typische Folgen sind Datenverlust und Betriebsstillstand.",
+        "media": {
+          "image": "/images/bedrohungen/malware.png",
+          "alt": "Illustration zu Malware"
+        }
       },
       {
         "id": "phishing",
@@ -445,7 +454,11 @@
           "Aufforderung zur Eingabe sensibler Daten",
           "Unbekannte Links oder Anhänge"
         ],
-        "note": "Absender prüfen und keine unbekannten Links öffnen."
+        "note": "Absender prüfen und keine unbekannten Links öffnen.",
+        "media": {
+          "image": "/images/bedrohungen/phishing.png",
+          "alt": "Illustration zu Phishing"
+        }
       },
       {
         "id": "social-engineering",
@@ -453,14 +466,22 @@
         "paragraphs": [
           "Hier wird nicht die Technik, sondern der Mensch manipuliert.",
           "Ein typisches Beispiel ist CEO-Fraud mit gefälschten Anweisungen von Vorgesetzten."
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/social-engineering.png",
+          "alt": "Illustration zu Social Engineering"
+        }
       },
       {
         "id": "ddos",
         "title": "DDoS-Angriffe",
         "paragraphs": [
           "Sehr viele Anfragen überlasten Server, sodass Systeme langsam werden oder ganz ausfallen."
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/ddos.png",
+          "alt": "Illustration zu DDoS-Angriffen"
+        }
       },
       {
         "id": "weitere-bedrohungen",
@@ -474,7 +495,11 @@
             "title": "Zero-Day-Exploits",
             "text": "Angriffe auf unbekannte Sicherheitslücken."
           }
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/zero-day-exploits.png",
+          "alt": "Illustration zu weiteren Bedrohungen"
+        }
       },
       {
         "id": "insider",
@@ -485,14 +510,14 @@
         "bullets": [
           "absichtlich, zum Beispiel Datendiebstahl",
           "unabsichtlich, zum Beispiel Fehlbedienung"
-        ]
+        ],
+        "media": {
+          "image": "/images/bedrohungen/datendiebstahl.png",
+          "alt": "Illustration zu Insider-Bedrohungen"
+        }
       }
     ],
-    "media": {
-      "eyebrow": "Illustration",
-      "title": "Bedrohungskarte oder Warning-Icons",
-      "caption": "Hier können später einzelne Icon-Sets für Malware, Phishing, DDoS und Insider ergänzt werden."
-    }
+    "media": null
   },
   {
     "id": "technische-massnahmen",
@@ -552,7 +577,11 @@
           "Prinzip der minimalen Rechte (Least Privilege)",
           "Passwörter geheim halten",
           "Nur auf notwendige Daten zugreifen"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-1.png",
+          "alt": "Illustration zur Zugriffskontrolle"
+        }
       },
       {
         "id": "verschluesselung",
@@ -566,7 +595,11 @@
           "Schutz vor Datendiebstahl",
           "VPN außerhalb des Unternehmens nutzen",
           "Nur verschlüsselte Datenträger verwenden"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-2.png",
+          "alt": "Illustration zur Verschluesselung"
+        }
       },
       {
         "id": "firewall",
@@ -574,7 +607,11 @@
         "paragraphs": [
           "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
         ],
-        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"]
+        "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-3.png",
+          "alt": "Illustration zur Firewall"
+        }
       },
       {
         "id": "antivirenprogramme",
@@ -582,7 +619,11 @@
         "paragraphs": [
           "Antivirenprogramme erkennen und entfernen Schadsoftware."
         ],
-        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"]
+        "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-4.png",
+          "alt": "Illustration zu Antivirenprogrammen"
+        }
       },
       {
         "id": "backups",
@@ -595,7 +636,11 @@
           "2 unterschiedliche Medien",
           "1 extern gespeichert",
           "Regelmäßige Wiederherstellungstests"
-        ]
+        ],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-5.png",
+          "alt": "Illustration zu Backups"
+        }
       },
       {
         "id": "updates-patches",
@@ -603,14 +648,14 @@
         "paragraphs": [
           "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
         ],
-        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"]
+        "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"],
+        "media": {
+          "image": "/images/massnahmen/massnahmen-6.png",
+          "alt": "Illustration zu Updates und Patches"
+        }
       }
     ],
-    "media": {
-      "eyebrow": "Grafik-Platzhalter",
-      "title": "Icons für Schutzmaßnahmen",
-      "caption": "Hier passen später kleine Illustrationen zu Firewall, Backup, Update und Verschlüsselung."
-    }
+    "media": null
   },
   {
     "id": "arbeitsalltag",
@@ -652,19 +697,47 @@
         "id": "ausserhalb-arbeitsplatz",
         "title": "Außerhalb des Arbeitsplatzes",
         "bullets": [
-          "Nur offizielle Kontaktwege nutzen",
-          "Öffentliches WLAN möglichst vermeiden",
-          "Wenn nötig: immer VPN verwenden",
-          "Heim-WLAN sicher konfigurieren"
+          {
+            "text": "Nur offizielle Kontaktwege nutzen",
+            "icon": "/images/arbeitsalltag/main.png",
+            "iconAlt": "Standard-Icon"
+          },
+          {
+            "text": "Oeffentliches WLAN moeglichst vermeiden",
+            "icon": "/images/arbeitsalltag/wlan.png",
+            "iconAlt": "WLAN-Icon"
+          },
+          {
+            "text": "Wenn noetig: immer VPN verwenden",
+            "icon": "/images/arbeitsalltag/vpn.png",
+            "iconAlt": "VPN-Icon"
+          },
+          {
+            "text": "Heim-WLAN sicher konfigurieren",
+            "icon": "/images/arbeitsalltag/wlan.png",
+            "iconAlt": "WLAN-Icon"
+          }
         ]
       },
       {
         "id": "allgemeine-sicherheitsregeln",
         "title": "Allgemeine Sicherheitsregeln",
         "bullets": [
-          "Keine unbekannten Geräte anschließen, zum Beispiel USB-Sticks",
-          "Geräte verschlüsselt halten",
-          "Zwei-Faktor-Authentifizierung aktivieren"
+          {
+            "text": "Keine unbekannten Geraete anschliessen, zum Beispiel USB-Sticks",
+            "icon": "/images/arbeitsalltag/usb.png",
+            "iconAlt": "USB-Icon"
+          },
+          {
+            "text": "Geraete verschluesselt halten",
+            "icon": "/images/arbeitsalltag/verschlüsselung.png",
+            "iconAlt": "Verschluesselungs-Icon"
+          },
+          {
+            "text": "Zwei-Faktor-Authentifizierung aktivieren",
+            "icon": "/images/arbeitsalltag/zwei-faktor-authentifizierung.png",
+            "iconAlt": "2FA-Icon"
+          }
         ]
       },
       {
@@ -674,31 +747,66 @@
           {
             "title": "Do's",
             "items": [
-              "Nur notwendige Daten verwenden",
-              "Daten vertraulich behandeln",
-              "Bildschirm sperren",
-              "E-Mails und Links prüfen",
-              "Sicherheitsvorfälle sofort melden"
+              {
+                "text": "Nur notwendige Daten verwenden",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "Daten vertraulich behandeln",
+                "icon": "/images/arbeitsalltag/verschlüsselung.png",
+                "iconAlt": "Verschluesselungs-Icon"
+              },
+              {
+                "text": "Bildschirm sperren",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "E-Mails und Links pruefen",
+                "icon": "/images/arbeitsalltag/verifizierung.png",
+                "iconAlt": "Verifizierungs-Icon"
+              },
+              {
+                "text": "Sicherheitsvorfaelle sofort melden",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              }
             ]
           },
           {
             "title": "Don'ts",
             "items": [
-              "Keine Passwörter teilen",
-              "Keine privaten Geräte ohne Freigabe nutzen",
-              "Keine sensiblen Daten ungeschützt speichern",
-              "Keine unbekannten Links öffnen",
-              "Keine sensiblen Gespräche in der Öffentlichkeit führen"
+              {
+                "text": "Keine Passwoerter teilen",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              },
+              {
+                "text": "Keine privaten Geraete ohne Freigabe nutzen",
+                "icon": "/images/arbeitsalltag/usb.png",
+                "iconAlt": "USB-Icon"
+              },
+              {
+                "text": "Keine sensiblen Daten ungeschuetzt speichern",
+                "icon": "/images/arbeitsalltag/verschlüsselung.png",
+                "iconAlt": "Verschluesselungs-Icon"
+              },
+              {
+                "text": "Keine unbekannten Links oeffnen",
+                "icon": "/images/arbeitsalltag/phishing.png",
+                "iconAlt": "Phishing-Icon"
+              },
+              {
+                "text": "Keine sensiblen Gespraeche in der Oeffentlichkeit fuehren",
+                "icon": "/images/arbeitsalltag/main.png",
+                "iconAlt": "Standard-Icon"
+              }
             ]
           }
         ]
       }
-    ],
-    "media": {
-      "eyebrow": "Foto-Platzhalter",
-      "title": "Homeoffice, Laptop oder mobiles Arbeiten",
-      "caption": "An dieser Stelle eignet sich später ein Bild zu mobilem Arbeiten oder einem sicheren Arbeitsplatz."
-    }
+    ]
   },
   {
     "id": "passwoerter",
@@ -778,9 +886,8 @@
       }
     ],
     "media": {
-      "eyebrow": "UI-Platzhalter",
-      "title": "Icon-Set für Passwort, 2FA und Passwortmanager",
-      "caption": "Hier können später passende Security-Icons oder ein Login-Mockup ergänzt werden."
+      "image": "/images/passwörter/passwort.png",
+      "size": "full"
     }
   },
   {
@@ -838,12 +945,7 @@
         ],
         "note": "Merksatz: Erkennen – Handeln – Melden."
       }
-    ],
-    "media": {
-      "eyebrow": "Warnhinweis",
-      "title": "Incident- oder Alert-Grafik",
-      "caption": "Hier passt später ein visuelles Warnsymbol oder eine Meldekette als Grafik."
-    }
+    ]
   },
   {
     "id": "cloud-sicherheit",
@@ -938,9 +1040,17 @@
       }
     ],
     "media": {
-      "eyebrow": "Cloud-Platzhalter",
-      "title": "Cloud-Architektur oder Provider-Logos",
-      "caption": "Hier können später Logos, eine schematische Cloud-Grafik oder ein Sicherheitsdiagramm ergänzt werden."
+      "size": "half",
+      "images": [
+        {
+          "src": "/images/cloud-dienste/cloud-dienste-1.png",
+          "alt": "Cloud-Dienst Illustration 1"
+        },
+        {
+          "src": "/images/cloud-dienste/cloud-dienste-2.png",
+          "alt": "Cloud-Dienst Illustration 2"
+        }
+      ]
     }
   },
   {
@@ -1286,6 +1396,10 @@
         "action": "restart",
         "variant": "primary"
       }
-    ]
+    ],
+    "media": {
+      "image": "/images/abschluss/datensicherheit.png",
+      "size": "full"
+    }
   }
 ]

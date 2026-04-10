@@ -192,14 +192,13 @@ export default function App() {
     });
   };
 
-  const handleQuizAnswer = (questionIndex, answerIndex, question) => {
+  const handleQuizAnswer = (questionIndex, answerIndex) => {
     if (quizAnswers[questionIndex] != null) return;
 
     const next = [...quizAnswers];
     next[questionIndex] = answerIndex;
     setQuizAnswers(next);
 
-    const correct = Boolean(question.answers[answerIndex]?.correct);
     const answeredCount = next.filter((answer) => answer != null).length;
     const nextScore = slides
       .filter((slide) => slide.type === 'quiz')
@@ -226,15 +225,6 @@ export default function App() {
       });
       return;
     }
-
-    setModal({
-      open: true,
-      title: correct ? 'Richtig beantwortet' : 'Nicht richtig beantwortet',
-      text: correct
-        ? 'Die Antwort wurde übernommen. Du kannst direkt mit der nächsten Frage weitermachen.'
-        : 'Die Antwort wurde übernommen. Schau dir die markierte Lösung in der Karte an und geh dann weiter.',
-      type: correct ? 'success' : 'danger',
-    });
   };
 
   return (

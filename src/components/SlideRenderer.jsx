@@ -34,59 +34,183 @@ function renderMarkup(text) {
   return { __html: text };
 }
 
-function renderSectionBody(section) {
+function getListItemKey(item, index) {
+  if (typeof item === 'string') return item;
+  return item.text || item.icon || index;
+}
+
+function renderList(items) {
   return (
-    <div className="section-body">
-      {section.paragraphs?.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
+    <ul className="check-list compact">
+      {items.map((item, index) => {
+        const entry = typeof item === 'string' ? { text: item } : item;
+        return (
+          <li
+            key={getListItemKey(item, index)}
+            className={entry.icon ? 'check-list-item-with-icon' : ''}
+          >
+            {entry.icon ? (
+              <img
+                src={entry.icon}
+                alt={entry.iconAlt || ''}
+                className="check-list-icon"
+                aria-hidden={entry.iconAlt ? undefined : 'true'}
+              />
+            ) : null}
+            <span>{entry.text}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 
-      {section.bullets?.length ? (
-        <ul className="check-list compact">
-          {section.bullets.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      ) : null}
+function renderSlideMedia(media) {
+  if (!media) return null;
 
-      {section.cards?.length ? (
-        <div className="mini-grid">
-          {section.cards.map((card) => (
-            <article className="mini-card glass" key={card.title}>
-              <h4>{card.title}</h4>
-              <p>{card.text}</p>
-            </article>
-          ))}
+  if (media.images?.length) {
+    const galleryVariant =
+      media.size === 'half'
+        ? 'half'
+        : media.images.length >= 4
+          ? 'quad'
+          : 'stack';
+    const galleryClass = `media-gallery media-gallery-${galleryVariant}`;
+
+    return (
+      <aside className={`media-placeholder glass reveal ${galleryClass}`.trim()}>
+        {media.images.map((image, index) => (
+          <figure className="media-gallery-item" key={image.src || index}>
+            <img
+              src={image.src}
+              alt={image.alt || image.title || `Slide image ${index + 1}`}
+              className="media-image media-gallery-image"
+            />
+            {image.title || image.caption ? (
+              <figcaption className="media-gallery-caption">
+                {image.title ? <strong>{image.title}</strong> : null}
+                {image.caption ? <span>{image.caption}</span> : null}
+              </figcaption>
+            ) : null}
+          </figure>
+        ))}
+      </aside>
+    );
+  }
+
+  return (
+    <aside
+      className={`media-placeholder glass reveal${media.image ? ` media-size-${media.size || 'full'}` : ''}`}
+    >
+      {media.image ? (
+        <img
+          src={media.image}
+          alt={media.title || 'Slide image'}
+          className={`media-image media-${media.size || 'full'}`}
+        />
+      ) : (
+        <div className="media-icon" aria-hidden="true">
+          IMG
         </div>
-      ) : null}
+      )}
+      {!media.image && (
+        <>
+          <span className="media-eyebrow">{media.eyebrow}</span>
+          <h3>{media.title}</h3>
+          <p>{media.caption}</p>
+        </>
+      )}
+    </aside>
+  );
+}
 
-      {section.comparison?.length ? (
-        <div className="comparison comparison-inline">
-          {section.comparison.map((item) => (
-            <article className="panel glass" key={item.title}>
-              <h4>{item.title}</h4>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      ) : null}
+function getInlineMediaBlocks(slide, sectionId) {
+  const blocks = [];
 
-      {section.columns?.length ? (
-        <div className="dual-list-grid">
-          {section.columns.map((column) => (
-            <article className="mini-card glass" key={column.title}>
-              <h4>{column.title}</h4>
-              <ul className="check-list compact">
-                {column.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      ) : null}
+  if (slide.mediaAfterSectionId === sectionId && slide.media) {
+    blocks.push({
+      key: `${sectionId}-legacy-media`,
+      media: slide.media,
+    });
+  }
 
-      {section.note ? <div className="section-note">{section.note}</div> : null}
+  slide.inlineMediaBlocks?.forEach((block, index) => {
+    if (block.afterSectionId === sectionId && block.media) {
+      blocks.push({
+        key: `${sectionId}-inline-media-${index}`,
+        media: block.media,
+      });
+    }
+  });
+
+  return blocks;
+}
+
+function renderSectionBody(section) {
+  const hasSectionMedia = Boolean(section.media?.image);
+
+  return (
+    <div className={`section-body${hasSectionMedia ? ' section-body-with-media' : ''}`}>
+      <div className="section-copy">
+        {section.paragraphs?.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+
+        {section.bullets?.length ? (
+          renderList(section.bullets)
+        ) : null}
+
+        {section.cards?.length ? (
+          <div className="mini-grid">
+            {section.cards.map((card) => (
+              <article className="mini-card glass" key={card.title}>
+                <h4>{card.title}</h4>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.comparison?.length ? (
+          <div className="comparison comparison-inline">
+            {section.comparison.map((item) => (
+              <article className="panel glass" key={item.title}>
+                <h4>{item.title}</h4>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.columns?.length ? (
+          <div className="dual-list-grid">
+            {section.columns.map((column) => (
+              <article className="mini-card glass" key={column.title}>
+                <h4>{column.title}</h4>
+                {renderList(column.items)}
+              </article>
+            ))}
+          </div>
+        ) : null}
+
+        {section.note ? <div className="section-note">{section.note}</div> : null}
+
+        {section.inlineMedia ? (
+          <div className="content-top-grid content-inline-media">
+            {renderSlideMedia(section.inlineMedia)}
+          </div>
+        ) : null}
+      </div>
+
+      {hasSectionMedia ? (
+        <aside className="section-side-media">
+          <img
+            src={section.media.image}
+            alt={section.media.alt || section.title}
+            className="media-image section-media-image"
+          />
+        </aside>
+      ) : null}
     </div>
   );
 }
@@ -152,41 +276,17 @@ export default function SlideRenderer({
 
           {slide.type === 'content' && (
             <>
-              <div className="content-top-grid">
-                {slide.media ? (
-                  <aside
-                    className={`media-placeholder glass reveal${slide.media.image ? ` media-size-${slide.media.size || 'full'}` : ''}`}
-                  >
-                    {slide.media.image ? (
-                      <img
-                        src={slide.media.image}
-                        alt={slide.media.title || 'Slide image'}
-                        className={`media-image media-${slide.media.size || 'full'}`}
-                      />
-                    ) : (
-                      <div className="media-icon" aria-hidden="true">
-                        IMG
-                      </div>
-                    )}
-                    {!slide.media.image && (
-                      <>
-                        <span className="media-eyebrow">
-                          {slide.media.eyebrow}
-                        </span>
-                        <h3>{slide.media.title}</h3>
-                        <p>{slide.media.caption}</p>
-                      </>
-                    )}
-                  </aside>
-                ) : null}
-              </div>
+              {!slide.mediaAfterSectionId ? (
+                <div className="content-top-grid">
+                  {renderSlideMedia(slide.media)}
+                </div>
+              ) : null}
 
               <div className="content-accordion reveal">
                 {slide.sections?.map((section) => {
                   const accordionKey = `${slide.id}:${section.id}`;
                   const open = Boolean(accordionOpen[accordionKey]);
-
-                  return (
+                  const sectionNode = (
                     <section
                       key={section.id}
                       className={`content-section${open ? ' open' : ''}`}
@@ -213,6 +313,20 @@ export default function SlideRenderer({
                         {renderSectionBody(section)}
                       </div>
                     </section>
+                  );
+
+                  return (
+                    <div key={section.id}>
+                      {sectionNode}
+                      {getInlineMediaBlocks(slide, section.id).map((block) => (
+                        <div
+                          className="content-top-grid content-inline-media"
+                          key={block.key}
+                        >
+                          {renderSlideMedia(block.media)}
+                        </div>
+                      ))}
+                    </div>
                   );
                 })}
               </div>
@@ -294,6 +408,10 @@ export default function SlideRenderer({
 
           {slide.type === 'summary' && (
             <>
+              <div className="content-top-grid summary-media-block">
+                {renderSlideMedia(slide.media)}
+              </div>
+
               <div className="grid cols-3">
                 {slide.summaryCards.map((card) => (
                   <article className="panel glass reveal" key={card.title}>
@@ -319,7 +437,16 @@ const sectionShape = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   paragraphs: PropTypes.arrayOf(PropTypes.string),
-  bullets: PropTypes.arrayOf(PropTypes.string),
+  bullets: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        icon: PropTypes.string,
+        iconAlt: PropTypes.string,
+      }),
+    ])
+  ),
   note: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
@@ -336,9 +463,37 @@ const sectionShape = PropTypes.shape({
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      items: PropTypes.arrayOf(PropTypes.string).isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            icon: PropTypes.string,
+            iconAlt: PropTypes.string,
+          }),
+        ])
+      ).isRequired,
     })
   ),
+  media: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+  }),
+  inlineMedia: PropTypes.shape({
+    eyebrow: PropTypes.string,
+    title: PropTypes.string,
+    caption: PropTypes.string,
+    image: PropTypes.string,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        alt: PropTypes.string,
+        title: PropTypes.string,
+        caption: PropTypes.string,
+      })
+    ),
+    size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
+  }),
 });
 
 SlideRenderer.propTypes = {
@@ -354,11 +509,40 @@ SlideRenderer.propTypes = {
     actions: PropTypes.array,
     keyFacts: PropTypes.array,
     sections: PropTypes.arrayOf(sectionShape),
+    mediaAfterSectionId: PropTypes.string,
+    inlineMediaBlocks: PropTypes.arrayOf(
+      PropTypes.shape({
+        afterSectionId: PropTypes.string.isRequired,
+        media: PropTypes.shape({
+          eyebrow: PropTypes.string,
+          title: PropTypes.string,
+          caption: PropTypes.string,
+          image: PropTypes.string,
+          images: PropTypes.arrayOf(
+            PropTypes.shape({
+              src: PropTypes.string.isRequired,
+              alt: PropTypes.string,
+              title: PropTypes.string,
+              caption: PropTypes.string,
+            })
+          ),
+          size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
+        }).isRequired,
+      })
+    ),
     media: PropTypes.shape({
       eyebrow: PropTypes.string,
       title: PropTypes.string,
       caption: PropTypes.string,
       image: PropTypes.string,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          src: PropTypes.string.isRequired,
+          alt: PropTypes.string,
+          title: PropTypes.string,
+          caption: PropTypes.string,
+        })
+      ),
       size: PropTypes.oneOf(['full', 'half', 'two-thirds', 'quarter', 'icon']),
     }),
     questions: PropTypes.array,
