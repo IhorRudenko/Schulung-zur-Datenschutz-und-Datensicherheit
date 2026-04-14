@@ -4,7 +4,7 @@
     "navTitle": "Start",
     "eyebrow": "Schulung 2026",
     "title": "Datenschutz und <span>Datensicherheit</span> im Arbeitsalltag",
-    "lead": "Diese interaktive Schulung fasst die wichtigsten Regeln, Risiken und Schutzmaßnahmen kompakt zusammen. Jeder Themenblock liegt auf einem eigenen Slide und kann über das Seitenmenü direkt angesprungen werden.",
+    "lead": "Diese interaktive Schulung fasst die wichtigsten Regeln, Risiken und Schutzmaßnahmen kompakt zusammen. Jeder Themenblock liegt auf einem eigenen Slide und kann über das Seitenmenü direkt angesprungen werden. Die Inhalte sind so aufgebaut, dass sie zentrale Begriffe verständlich erklären, typische Alltagssituationen einordnen und konkrete Orientierung für sicheres Verhalten im Unternehmen geben.",
     "type": "hero",
     "overview": [
       "Datenschutz verstehen",
@@ -59,7 +59,8 @@
         "title": "Warum ist diese Schulung wichtig?",
         "paragraphs": [
           "Fehler im Umgang mit Daten können rechtliche, finanzielle und organisatorische Folgen haben.",
-          "Schon alltägliche Handlungen wie das Öffnen eines Links, das Teilen einer Datei oder ein schwaches Passwort können Sicherheitsvorfälle auslösen."
+          "Schon alltägliche Handlungen wie das Öffnen eines Links, das Teilen einer Datei oder ein schwaches Passwort können Sicherheitsvorfälle auslösen.",
+          "Datenschutz und Datensicherheit sind deshalb keine reinen Spezialthemen für die IT, sondern Teil des normalen Arbeitsalltags. Wer grundlegende Regeln kennt und bewusst anwendet, trägt aktiv dazu bei, Schäden für betroffene Personen und für das Unternehmen zu vermeiden."
         ],
         "bullets": [
           "Schutz sensibler Daten von Kunden und Mitarbeitenden",
@@ -71,7 +72,7 @@
     ],
     "media": {
       "image": "/images/einführung/einführung-1.png",
-      "size": "full"
+      "size": "two-thirds"
     }
   },
   {
@@ -114,16 +115,20 @@
         "id": "was-ist-datenschutz",
         "title": "Was ist Datenschutz?",
         "paragraphs": [
-          "Datenschutz schützt Menschen, deren Daten verarbeitet werden. Es geht nicht nur um Technik, sondern auch um Rechte, Verantwortung und nachvollziehbare Prozesse."
+          "Datenschutz schützt Menschen, deren Daten verarbeitet werden. Es geht nicht nur um Technik, sondern auch um Rechte, Verantwortung und nachvollziehbare Prozesse.",
+          "Im Mittelpunkt steht immer die betroffene Person. Unternehmen müssen deshalb begründen können, warum Daten erhoben werden, wie lange sie benötigt werden und wer darauf zugreifen darf."
         ],
         "inlineMedia": {
           "image": "/images/datenschutz/datenschutz-2.png",
-          "size": "full"
+          "size": "two-thirds"
         }
       },
       {
         "id": "beispiele-daten",
         "title": "Beispiele für personenbezogene Daten",
+        "paragraphs": [
+          "Personenbezogene Daten sind alle Informationen, die sich direkt oder indirekt einer Person zuordnen lassen. Manche Daten wirken auf den ersten Blick harmlos, können in Kombination aber sehr aussagekräftig sein."
+        ],
         "bullets": [
           "Name, Adresse, Telefonnummer",
           "E-Mail-Adresse",
@@ -133,12 +138,15 @@
         ],
         "inlineMedia": {
           "image": "/images/datenschutz/datenschutz-1.png",
-          "size": "full"
+          "size": "two-thirds"
         }
       },
       {
         "id": "prinzipien-datenschutz",
         "title": "Wichtige Prinzipien des Datenschutzes",
+        "paragraphs": [
+          "Die Grundprinzipien des Datenschutzes helfen dabei, Datenverarbeitung rechtmäßig und nachvollziehbar zu gestalten. Sie geben Unternehmen eine klare Orientierung für den praktischen Umgang mit personenbezogenen Daten."
+        ],
         "cards": [
           {
             "title": "Zweckbindung",
@@ -196,7 +204,8 @@
         "id": "was-ist-datensicherheit",
         "title": "Was ist Datensicherheit?",
         "paragraphs": [
-          "Datensicherheit schützt Daten vor Verlust, Manipulation, Diebstahl und unbefugtem Zugriff. Dazu gehören technische Werkzeuge genauso wie klare Abläufe im Unternehmen."
+          "Datensicherheit schützt Daten vor Verlust, Manipulation, Diebstahl und unbefugtem Zugriff. Dazu gehören technische Werkzeuge genauso wie klare Abläufe im Unternehmen.",
+          "Sie betrifft nicht nur digitale Informationen, sondern auch Dokumente, Datenträger und Arbeitsprozesse. Ziel ist es, dass Daten verlässlich verfügbar, korrekt und nur für berechtigte Personen zugänglich bleiben."
         ],
         "bullets": [
           "Schutz vor Verlust",
@@ -215,14 +224,14 @@
         "comparison": [
           {
             "title": "Datenschutz",
-            "text": "Schützt personenbezogene Daten und fragt: Dürfen wir diese Daten so verarbeiten?"
+            "text": "Schützt personenbezogene Daten und fragt: Dürfen wir diese Daten so verarbeiten? Im Mittelpunkt stehen Rechtsgrundlagen, Transparenz und die Rechte betroffener Personen."
           },
           {
             "title": "Datensicherheit",
-            "text": "Schützt alle Daten technisch und organisatorisch und fragt: Sind die Daten ausreichend geschützt?"
+            "text": "Schützt alle Daten technisch und organisatorisch und fragt: Sind die Daten ausreichend geschützt? Im Mittelpunkt stehen Schutzmaßnahmen wie Zugriffskontrolle, Backups, Verschlüsselung und sichere Prozesse."
           }
         ],
-        "note": "Beide Bereiche ergänzen sich und sind gemeinsam notwendig."
+        "note": "Beide Bereiche ergänzen sich und sind gemeinsam notwendig. Ein Beispiel: Kundendaten dürfen nur für einen klaren Zweck verarbeitet werden und müssen gleichzeitig vor Verlust oder unbefugtem Zugriff geschützt sein."
       }
     ]
   },
@@ -267,7 +276,8 @@
         "title": "DSGVO",
         "paragraphs": [
           "Die Datenschutz-Grundverordnung schützt personenbezogene Daten und schafft einheitliche Datenschutzstandards in der EU.",
-          "Wichtig ist: Eine Einwilligung ist nur eine mögliche Rechtsgrundlage. Verarbeitung kann auch auf Vertragserfüllung oder gesetzlicher Verpflichtung beruhen."
+          "Wichtig ist: Eine Einwilligung ist nur eine mögliche Rechtsgrundlage. Verarbeitung kann auch auf Vertragserfüllung oder gesetzlicher Verpflichtung beruhen.",
+          "Für Unternehmen bedeutet das, dass sie ihre Verarbeitungstätigkeiten prüfen, dokumentieren und gegenüber betroffenen Personen transparent machen müssen. Datenschutz ist damit nicht nur ein Rechtsthema, sondern auch eine organisatorische Aufgabe."
         ],
         "cards": [
           {
@@ -292,7 +302,8 @@
         "id": "bdsg",
         "title": "BDSG",
         "paragraphs": [
-          "Das Bundesdatenschutzgesetz ergänzt die DSGVO in Deutschland und konkretisiert nationale Regelungen."
+          "Das Bundesdatenschutzgesetz ergänzt die DSGVO in Deutschland und konkretisiert nationale Regelungen.",
+          "Es enthält unter anderem besondere Vorgaben für bestimmte Verarbeitungssituationen, etwa im Beschäftigungskontext oder bei behördlichen Zuständigkeiten. Für Unternehmen gilt dabei: Die DSGVO bildet den europäischen Rahmen, das BDSG präzisiert einzelne Punkte für Deutschland."
         ],
         "media": {
           "image": "/images/recht/bdsg.png",
@@ -302,6 +313,9 @@
       {
         "id": "pflichten-unternehmen",
         "title": "Pflichten von Unternehmen",
+        "paragraphs": [
+          "Unternehmen müssen Datenschutz nicht nur kennen, sondern auch praktisch umsetzen. Dazu gehören klare Zuständigkeiten, geeignete Schutzmaßnahmen und nachvollziehbare Prozesse für den Umgang mit Daten."
+        ],
         "bullets": [
           "Bestellung eines Datenschutzbeauftragten, falls erforderlich",
           "Sicherung von Daten",
@@ -351,12 +365,16 @@
         "id": "definition-cyber",
         "title": "Definition",
         "paragraphs": [
-          "Cyber Security richtet sich auf den Schutz digitaler Systeme und Prozesse. Sie verbindet Technologie, Organisation und Verhalten."
+          "Cyber Security richtet sich auf den Schutz digitaler Systeme und Prozesse. Sie verbindet Technologie, Organisation und Verhalten.",
+          "Dazu zählen nicht nur Firewalls oder Antivirenprogramme, sondern auch sichere Konfigurationen, regelmäßige Updates, klare Zuständigkeiten und aufmerksames Verhalten der Mitarbeitenden. Cyber Security ist damit eine Daueraufgabe und kein einmaliges Projekt."
         ]
       },
       {
         "id": "cia-triade",
         "title": "Ziele der Cyber Security (CIA-Triade)",
+        "paragraphs": [
+          "Die CIA-Triade beschreibt die drei grundlegenden Schutzziele der Informationssicherheit. Sie hilft dabei, Risiken einzuordnen und Schutzmaßnahmen systematisch zu planen."
+        ],
         "cards": [
           {
             "title": "Vertraulichkeit",
@@ -375,7 +393,7 @@
     ],
     "media": {
       "image": "/images/cyber-security/cyber-security.png",
-      "size": "full"
+      "size": "two-thirds"
     }
   },
   {
@@ -430,7 +448,8 @@
         "id": "malware",
         "title": "Malware",
         "paragraphs": [
-          "Schadsoftware beschädigt Systeme oder stiehlt Daten. Sie kann sich über Anhänge, Downloads oder externe Datenträger verbreiten."
+          "Schadsoftware beschädigt Systeme oder stiehlt Daten. Sie kann sich über Anhänge, Downloads oder externe Datenträger verbreiten.",
+          "Oft wird Malware unbemerkt eingeschleust und erst dann sichtbar, wenn bereits Dateien verschlüsselt, Daten abgegriffen oder Systeme gestört wurden."
         ],
         "bullets": [
           "Viren verbreiten sich selbstständig",
@@ -447,7 +466,8 @@
         "id": "phishing",
         "title": "Phishing",
         "paragraphs": [
-          "Gefälschte E-Mails oder Webseiten sollen Zugangsdaten stehlen."
+          "Gefälschte E-Mails oder Webseiten sollen Zugangsdaten stehlen.",
+          "Die Nachrichten wirken oft dringend oder offiziell und zielen darauf ab, dass Empfängerinnen und Empfänger vorschnell handeln. Deshalb sollten Absender, Links und Inhalte immer genau geprüft werden."
         ],
         "bullets": [
           "Zeitdruck wie „Ihr Konto wird gesperrt“",
@@ -465,7 +485,8 @@
         "title": "Social Engineering",
         "paragraphs": [
           "Hier wird nicht die Technik, sondern der Mensch manipuliert.",
-          "Ein typisches Beispiel ist CEO-Fraud mit gefälschten Anweisungen von Vorgesetzten."
+          "Ein typisches Beispiel ist CEO-Fraud mit gefälschten Anweisungen von Vorgesetzten.",
+          "Angreifende nutzen dabei Vertrauen, Autorität, Hilfsbereitschaft oder Zeitdruck aus. Gerade deshalb sind Rückfragen und gesicherte Freigabewege so wichtig."
         ],
         "media": {
           "image": "/images/bedrohungen/social-engineering.png",
@@ -476,7 +497,8 @@
         "id": "ddos",
         "title": "DDoS-Angriffe",
         "paragraphs": [
-          "Sehr viele Anfragen überlasten Server, sodass Systeme langsam werden oder ganz ausfallen."
+          "Sehr viele Anfragen überlasten Server, sodass Systeme langsam werden oder ganz ausfallen.",
+          "Betroffen sind vor allem öffentlich erreichbare Dienste. Auch wenn dabei nicht immer Daten gestohlen werden, können Erreichbarkeit, Geschäftsabläufe und Kundenservice stark beeinträchtigt werden."
         ],
         "media": {
           "image": "/images/bedrohungen/ddos.png",
@@ -486,6 +508,9 @@
       {
         "id": "weitere-bedrohungen",
         "title": "Weitere Bedrohungen",
+        "paragraphs": [
+          "Neben den bekannten Angriffsformen gibt es weitere Bedrohungen, die oft automatisiert oder sehr gezielt eingesetzt werden. Sie zeigen, wie wichtig starke Passwörter, aktuelle Systeme und schnelle Reaktionen sind."
+        ],
         "cards": [
           {
             "title": "Brute Force",
@@ -505,7 +530,8 @@
         "id": "insider",
         "title": "Insider-Bedrohungen",
         "paragraphs": [
-          "Gefahren kommen nicht nur von außen. Auch eigene Mitarbeitende können absichtlich oder unabsichtlich Sicherheitsvorfälle auslösen."
+          "Gefahren kommen nicht nur von außen. Auch eigene Mitarbeitende können absichtlich oder unabsichtlich Sicherheitsvorfälle auslösen.",
+          "Deshalb sind Berechtigungskonzepte, Sensibilisierung und klare Prozesse wichtig. Nicht jedes Risiko entsteht durch böse Absicht, oft reichen schon Unachtsamkeit oder Unsicherheit im Arbeitsalltag aus."
         ],
         "bullets": [
           "absichtlich, zum Beispiel Datendiebstahl",
@@ -571,7 +597,8 @@
         "id": "zugriffskontrolle",
         "title": "Zugriffskontrolle",
         "paragraphs": [
-          "Nur berechtigte Personen sollen auf Daten zugreifen können. Je geringer der Zugriff, desto kleiner das Risiko."
+          "Nur berechtigte Personen sollen auf Daten zugreifen können. Je geringer der Zugriff, desto kleiner das Risiko.",
+          "Zugriffsrechte sollten sich immer an der tatsächlichen Aufgabe orientieren. Wer nur auf die Informationen zugreifen kann, die für die eigene Arbeit notwendig sind, verringert Missbrauchs- und Fehlerrisiken."
         ],
         "bullets": [
           "Prinzip der minimalen Rechte (Least Privilege)",
@@ -587,7 +614,8 @@
         "id": "verschluesselung",
         "title": "Verschlüsselung",
         "paragraphs": [
-          "Verschlüsselung macht Daten unlesbar und schützt bei Diebstahl oder Abhören."
+          "Verschlüsselung macht Daten unlesbar und schützt bei Diebstahl oder Abhören.",
+          "Sie ist besonders wichtig, wenn Daten übertragen, mobil gespeichert oder außerhalb gesicherter Unternehmensnetze genutzt werden. Ohne passenden Schlüssel bleiben die Informationen für Unbefugte unbrauchbar."
         ],
         "bullets": [
           "Schutz vor Abhören",
@@ -605,7 +633,8 @@
         "id": "firewall",
         "title": "Firewall",
         "paragraphs": [
-          "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe."
+          "Eine Firewall kontrolliert den Datenverkehr und blockiert unerlaubte Zugriffe.",
+          "Sie bildet eine wichtige Schutzschicht zwischen internen Systemen und externen Netzwerken. Dadurch lassen sich verdächtige Verbindungen einschränken oder vollständig unterbinden."
         ],
         "bullets": ["Filterung von Datenpaketen", "Erkennung von Angriffen"],
         "media": {
@@ -617,7 +646,8 @@
         "id": "antivirenprogramme",
         "title": "Antivirenprogramme",
         "paragraphs": [
-          "Antivirenprogramme erkennen und entfernen Schadsoftware."
+          "Antivirenprogramme erkennen und entfernen Schadsoftware.",
+          "Sie sind ein wichtiger Baustein, ersetzen aber keine Aufmerksamkeit der Nutzenden. Neue Bedrohungen lassen sich nur dann gut erkennen, wenn Signaturen, Programme und Systeme aktuell gehalten werden."
         ],
         "bullets": ["Regelmäßige Updates", "Warnmeldungen ernst nehmen"],
         "media": {
@@ -629,7 +659,8 @@
         "id": "backups",
         "title": "Backups",
         "paragraphs": [
-          "Backups sind Sicherheitskopien von Daten und helfen bei Datenverlust durch Fehler, Defekte oder Angriffe."
+          "Backups sind Sicherheitskopien von Daten und helfen bei Datenverlust durch Fehler, Defekte oder Angriffe.",
+          "Sie sind besonders wichtig bei Ransomware, Hardwareausfällen oder versehentlichem Löschen. Entscheidend ist nicht nur das Vorhandensein eines Backups, sondern auch, dass eine Wiederherstellung zuverlässig funktioniert."
         ],
         "bullets": [
           "3 Kopien",
@@ -646,7 +677,8 @@
         "id": "updates-patches",
         "title": "Updates und Patches",
         "paragraphs": [
-          "Updates schließen Sicherheitslücken und müssen ernst genommen werden."
+          "Updates schließen Sicherheitslücken und müssen ernst genommen werden.",
+          "Viele Angriffe nutzen bekannte Schwachstellen aus, für die längst Korrekturen verfügbar sind. Wer Systeme aktuell hält, reduziert vermeidbare Risiken oft mit vergleichsweise wenig Aufwand."
         ],
         "bullets": ["Updates nicht ignorieren", "Systeme aktuell halten"],
         "media": {
@@ -696,6 +728,9 @@
       {
         "id": "ausserhalb-arbeitsplatz",
         "title": "Außerhalb des Arbeitsplatzes",
+        "paragraphs": [
+          "Im Homeoffice, auf Reisen oder bei der Arbeit an wechselnden Orten fehlen oft die gewohnten Schutzmechanismen des Unternehmens. Gerade deshalb sind bewusstes Verhalten und sichere Verbindungen besonders wichtig."
+        ],
         "bullets": [
           {
             "text": "Nur offizielle Kontaktwege nutzen",
@@ -703,12 +738,12 @@
             "iconAlt": "Standard-Icon"
           },
           {
-            "text": "Oeffentliches WLAN moeglichst vermeiden",
+            "text": "Öffentliche WLANs möglichst vermeiden",
             "icon": "/images/arbeitsalltag/wlan.png",
             "iconAlt": "WLAN-Icon"
           },
           {
-            "text": "Wenn noetig: immer VPN verwenden",
+            "text": "Wenn nötig immer ein VPN verwenden",
             "icon": "/images/arbeitsalltag/vpn.png",
             "iconAlt": "VPN-Icon"
           },
@@ -722,14 +757,17 @@
       {
         "id": "allgemeine-sicherheitsregeln",
         "title": "Allgemeine Sicherheitsregeln",
+        "paragraphs": [
+          "Viele Sicherheitsvorfälle entstehen nicht durch hochkomplexe Angriffe, sondern durch kleine Nachlässigkeiten. Wer Geräte schützt und Warnsignale ernst nimmt, reduziert das Risiko deutlich."
+        ],
         "bullets": [
           {
-            "text": "Keine unbekannten Geraete anschliessen, zum Beispiel USB-Sticks",
+            "text": "Keine unbekannten Geräte anschließen, zum Beispiel USB-Sticks",
             "icon": "/images/arbeitsalltag/usb.png",
             "iconAlt": "USB-Icon"
           },
           {
-            "text": "Geraete verschluesselt halten",
+            "text": "Geräte verschlüsselt halten",
             "icon": "/images/arbeitsalltag/verschlüsselung.png",
             "iconAlt": "Verschluesselungs-Icon"
           },
@@ -743,9 +781,12 @@
       {
         "id": "umgang-mit-daten",
         "title": "Umgang mit Daten",
+        "paragraphs": [
+          "Auch beim täglichen Arbeiten mit Dateien, E-Mails und Gesprächen gilt: Nicht jede Information ist für jede Person bestimmt. Vertrauliche Daten sollten nur dort sichtbar, speicherbar und teilbar sein, wo es wirklich notwendig ist."
+        ],
         "columns": [
           {
-            "title": "Do's",
+            "title": "Empfohlen",
             "items": [
               {
                 "text": "Nur notwendige Daten verwenden",
@@ -763,42 +804,42 @@
                 "iconAlt": "Standard-Icon"
               },
               {
-                "text": "E-Mails und Links pruefen",
+                "text": "E-Mails und Links sorgfältig prüfen",
                 "icon": "/images/arbeitsalltag/verifizierung.png",
                 "iconAlt": "Verifizierungs-Icon"
               },
               {
-                "text": "Sicherheitsvorfaelle sofort melden",
+                "text": "Sicherheitsvorfälle sofort melden",
                 "icon": "/images/arbeitsalltag/main.png",
                 "iconAlt": "Standard-Icon"
               }
             ]
           },
           {
-            "title": "Don'ts",
+            "title": "Vermeiden",
             "items": [
               {
-                "text": "Keine Passwoerter teilen",
+                "text": "Keine Passwörter weitergeben",
                 "icon": "/images/arbeitsalltag/main.png",
                 "iconAlt": "Standard-Icon"
               },
               {
-                "text": "Keine privaten Geraete ohne Freigabe nutzen",
+                "text": "Keine privaten Geräte ohne Freigabe nutzen",
                 "icon": "/images/arbeitsalltag/usb.png",
                 "iconAlt": "USB-Icon"
               },
               {
-                "text": "Keine sensiblen Daten ungeschuetzt speichern",
+                "text": "Keine sensiblen Daten ungeschützt speichern",
                 "icon": "/images/arbeitsalltag/verschlüsselung.png",
                 "iconAlt": "Verschluesselungs-Icon"
               },
               {
-                "text": "Keine unbekannten Links oeffnen",
+                "text": "Keine unbekannten Links öffnen",
                 "icon": "/images/arbeitsalltag/phishing.png",
                 "iconAlt": "Phishing-Icon"
               },
               {
-                "text": "Keine sensiblen Gespraeche in der Oeffentlichkeit fuehren",
+                "text": "Keine sensiblen Gespräche in der Öffentlichkeit führen",
                 "icon": "/images/arbeitsalltag/main.png",
                 "iconAlt": "Standard-Icon"
               }
@@ -852,12 +893,16 @@
         "id": "warum-passwoerter",
         "title": "Warum sind sichere Passwörter wichtig?",
         "paragraphs": [
-          "Sie verhindern unbefugten Zugriff und reduzieren die Folgen kompromittierter Konten."
+          "Sie verhindern unbefugten Zugriff und reduzieren die Folgen kompromittierter Konten.",
+          "Da viele Angriffe mit gestohlenen oder erratenen Zugangsdaten beginnen, gehören starke Passwörter zu den wichtigsten Grundschutzmaßnahmen. Ein schwaches Passwort kann ausreichen, um E-Mail-Konten, Cloud-Dienste oder interne Systeme zu gefährden."
         ]
       },
       {
         "id": "empfehlungen-passwoerter",
         "title": "Empfehlungen",
+        "paragraphs": [
+          "Besonders geeignet sind lange und gut merkbare Passphrasen. Entscheidend ist dabei weniger ein kompliziert wirkendes Muster als eine ausreichende Länge, Einzigartigkeit und eine sichere Aufbewahrung."
+        ],
         "bullets": [
           "Lange Passphrasen verwenden, mindestens 12–20+ Zeichen",
           "Ein Passwort pro Zugang",
@@ -867,6 +912,9 @@
       {
         "id": "zusaetzliche-massnahmen-passwoerter",
         "title": "Zusätzliche Maßnahmen",
+        "paragraphs": [
+          "Ein starkes Passwort allein ist gut, in Kombination mit weiteren Schutzmaßnahmen aber deutlich wirksamer. Vor allem bei wichtigen Zugängen sollte zusätzlicher Schutz selbstverständlich sein."
+        ],
         "bullets": [
           "Passwortmanager nutzen",
           "Zwei-Faktor-Authentifizierung aktivieren"
@@ -876,7 +924,8 @@
         "id": "beispiele-nicht-verwenden",
         "title": "Beispiele (nicht verwenden)",
         "paragraphs": [
-          "Die Beispiele im Dokument zeigen vor allem, dass Vorhersehbarkeit problematisch ist. Ein einzelnes leicht merkbares Passwort für mehrere Konten bleibt riskant, auch wenn es auf den ersten Blick komplex wirkt."
+          "Die Beispiele im Dokument zeigen vor allem, dass Vorhersehbarkeit problematisch ist. Ein einzelnes leicht merkbares Passwort für mehrere Konten bleibt riskant, auch wenn es auf den ersten Blick komplex wirkt.",
+          "Typisch unsicher sind Namen, Geburtsdaten, einfache Zahlenfolgen oder kleine Abwandlungen desselben Passworts. Wird ein Zugang kompromittiert, sind sonst oft auch weitere Konten schnell betroffen."
         ],
         "bullets": [
           "Keine kurzen oder wiederverwendeten Passwörter",
@@ -926,7 +975,8 @@
         "id": "was-ist-verletzung",
         "title": "Was ist eine Datenschutzverletzung?",
         "paragraphs": [
-          "Eine Verletzung liegt vor, wenn personenbezogene Daten verloren gehen, verändert werden oder unbefugt eingesehen werden."
+          "Eine Verletzung liegt vor, wenn personenbezogene Daten verloren gehen, verändert werden oder unbefugt eingesehen werden.",
+          "Das kann zum Beispiel durch eine fehlgeleitete E-Mail, einen verlorenen Laptop, einen unberechtigten Zugriff auf Dateien oder eine versehentliche Veröffentlichung passieren. Entscheidend ist nicht nur die Absicht, sondern bereits der tatsächliche Verlust der Vertraulichkeit, Integrität oder Verfügbarkeit."
         ],
         "bullets": [
           "Daten gehen verloren",
@@ -937,13 +987,16 @@
       {
         "id": "richtiges-verhalten",
         "title": "Richtiges Verhalten",
+        "paragraphs": [
+          "Im Ernstfall kommt es auf Schnelligkeit und klare Abläufe an. Wer einen Vorfall früh meldet, ermöglicht es dem Unternehmen, Schäden zu begrenzen, Betroffene zu schützen und gesetzliche Pflichten einzuhalten."
+        ],
         "bullets": [
           "Sofort handeln und Schaden begrenzen",
           "Unverzüglich Vorgesetzte oder Datenschutzbeauftragte informieren",
           "Vorfall dokumentieren",
           "Auch kleine oder unsichere Vorfälle melden"
         ],
-        "note": "Merksatz: Erkennen – Handeln – Melden."
+        "note": "Merksatz: erkennen, handeln, melden."
       }
     ]
   },
@@ -994,6 +1047,9 @@
       {
         "id": "zugriff-beschraenken-cloud",
         "title": "Zugriff beschränken",
+        "paragraphs": [
+          "Auch in der Cloud sollte nur auf Daten und Funktionen zugegriffen werden können, die tatsächlich benötigt werden. Je genauer Berechtigungen vergeben sind, desto besser lassen sich Risiken begrenzen."
+        ],
         "bullets": [
           "Prinzip der minimalen Rechte",
           "Individuelle Benutzerkonten",
@@ -1003,6 +1059,9 @@
       {
         "id": "starke-authentifizierung-cloud",
         "title": "Starke Authentifizierung",
+        "paragraphs": [
+          "Cloud-Konten sind häufig von überall erreichbar und deshalb ein besonders attraktives Ziel für Angriffe. Zusätzliche Anmeldefaktoren erhöhen die Sicherheit deutlich, selbst wenn ein Passwort bekannt wird."
+        ],
         "bullets": [
           "Multi-Faktor-Authentifizierung verwenden",
           "Schutz auch bei gestohlenen Passwörtern"
@@ -1011,16 +1070,22 @@
       {
         "id": "daten-verschluesseln-cloud",
         "title": "Daten verschlüsseln",
+        "paragraphs": [
+          "Verschlüsselung schützt Daten in der Cloud sowohl bei der Übertragung als auch bei der Speicherung. So sinkt das Risiko, dass Inhalte bei einem Zugriff durch Unbefugte direkt lesbar sind."
+        ],
         "bullets": [
-          "Bei der Übertragung, zum Beispiel HTTPS",
+          "Bei der Übertragung, zum Beispiel über HTTPS",
           "Bei der Speicherung"
         ]
       },
       {
         "id": "anbieter-waehlen-cloud",
         "title": "Anbieter sorgfältig wählen",
+        "paragraphs": [
+          "Nicht jeder Cloud-Dienst erfüllt automatisch alle Anforderungen an Datenschutz und Informationssicherheit. Unternehmen sollten deshalb prüfen, wo Daten verarbeitet werden, welche Standards gelten und wie transparent der Anbieter arbeitet."
+        ],
         "bullets": [
-          "DSGVO-konform, zum Beispiel Server in der EU",
+          "DSGVO-konform, zum Beispiel mit Serverstandorten in der EU",
           "Sicherheitsstandards wie ISO 27001",
           "Transparente Datenschutzrichtlinien"
         ],
@@ -1035,7 +1100,8 @@
         "id": "shared-responsibility-cloud",
         "title": "Shared Responsibility Model",
         "paragraphs": [
-          "Der Anbieter sichert die Infrastruktur. Das Unternehmen bleibt für den Schutz seiner Daten, Konten und Berechtigungen verantwortlich."
+          "Der Anbieter sichert die Infrastruktur. Das Unternehmen bleibt für den Schutz seiner Daten, Konten und Berechtigungen verantwortlich.",
+          "In der Praxis bedeutet das: Auch bei einem sicheren Cloud-Anbieter müssen Zugriffe, Konfigurationen, Rollen und Inhalte weiterhin sorgfältig verwaltet werden. Sicherheit kann also nicht vollständig an den Dienst ausgelagert werden."
         ]
       }
     ],
@@ -1379,15 +1445,15 @@
     "summaryCards": [
       {
         "title": "Datenschutz fragt nach dem „Dürfen“",
-        "text": "Personenbezogene Daten brauchen eine klare Rechtsgrundlage, Transparenz und einen legitimen Zweck."
+        "text": "Personenbezogene Daten brauchen eine klare Rechtsgrundlage, Transparenz und einen legitimen Zweck. Entscheidend ist, dass Verarbeitung nachvollziehbar, erforderlich und für betroffene Personen verständlich bleibt."
       },
       {
         "title": "Datensicherheit fragt nach dem „Wie gut geschützt“",
-        "text": "Technische und organisatorische Maßnahmen schützen Daten vor Verlust, Manipulation und unbefugtem Zugriff."
+        "text": "Technische und organisatorische Maßnahmen schützen Daten vor Verlust, Manipulation und unbefugtem Zugriff. Dazu gehören nicht nur Werkzeuge, sondern auch klare Prozesse, Zuständigkeiten und regelmäßige Pflege."
       },
       {
         "title": "Sicheres Verhalten ist Teil des Schutzkonzepts",
-        "text": "Passwörter, Aufmerksamkeit bei Phishing, Meldewege und saubere Routinen machen im Alltag den Unterschied."
+        "text": "Passwörter, Aufmerksamkeit bei Phishing, Meldewege und saubere Routinen machen im Alltag den Unterschied. Schon kleine bewusste Entscheidungen helfen dabei, Risiken früh zu erkennen und Schäden zu vermeiden."
       }
     ],
     "actions": [

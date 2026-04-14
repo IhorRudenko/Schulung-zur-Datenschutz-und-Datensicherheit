@@ -575,7 +575,7 @@ body.light .sidebar-toggle {
 .score-box,
 .modal {
   border-radius: 14px;
-  padding: 20px;
+  padding: 16px 12px;
 }
 
 .panel,
@@ -630,6 +630,7 @@ body.light .sidebar-toggle {
   padding: 0;
   overflow: hidden;
   border-radius: 14px;
+  margin: 0 auto;
 }
 
 .media-image {
@@ -749,7 +750,7 @@ body.light .sidebar-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 22px;
+  padding: 10px 20px;
   background: transparent;
   border-radius: 24px;
   font-size: 18px;
@@ -811,10 +812,14 @@ body.light .sidebar-toggle {
 
 .section-body h4,
 .panel h3,
-.mini-card h4,
 .quiz-card h3,
 .media-placeholder h3 {
   margin: 0 0 8px;
+}
+
+.mini-card h4 {
+  margin: 0 0 16px;
+  color: var(--accent);
 }
 
 .quiz-card h3 {
@@ -861,7 +866,7 @@ body.light .sidebar-toggle {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .check-list li::before {
