@@ -1,17 +1,16 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Sidebar({
   slides,
   current,
   activeAnchor,
+  openGroup,
+  setOpenGroup,
   onToggle,
   onNavigate,
   lightTheme,
   onToggleTheme,
 }) {
-  const [openGroup, setOpenGroup] = useState(null);
-
   return (
     <>
       <button
@@ -20,7 +19,7 @@ export default function Sidebar({
         aria-label="Navigation einblenden"
         onClick={onToggle}
       >
-        ☰
+        ≡
       </button>
 
       <aside
@@ -47,52 +46,57 @@ export default function Sidebar({
         </div>
 
         <nav className="dot-nav" id="dotNav">
-          {slides.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`nav-group${index === current ? ' active' : ''}${
-                openGroup === slide.id ? ' expanded' : ''
-              }`}
-            >
-              <button
-                className={`dot-link${index === current ? ' active' : ''}`}
-                onClick={() => {
-                  if (slide.children?.length) {
-                    setOpenGroup((group) =>
-                      group === slide.id ? null : slide.id
-                    );
-                  }
-                  onNavigate(index);
-                }}
-              >
-                <span className="dot"></span>
-                <span>{slide.navTitle}</span>
-                {slide.children?.length ? (
-                  <span className="nav-caret" aria-hidden="true">
-                    {openGroup === slide.id ? '−' : '+'}
-                  </span>
-                ) : null}
-              </button>
+          {slides.map((slide, index) => {
+            const isExpanded =
+              Boolean(slide.children?.length) && openGroup === slide.id;
 
-              {slide.children?.length ? (
-                <div className="sub-nav">
-                  {slide.children.map((child) => (
-                    <button
-                      key={child.id}
-                      className={`sub-link${
-                        index === current && child.id === activeAnchor
-                          ? ' active'
-                          : ''
-                      }`}
-                      onClick={() => onNavigate(index, child.id)}
-                    >
-                      {child.label}
-                    </button>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          ))}
+            return (
+              <div
+                key={slide.id}
+                className={`nav-group${index === current ? ' active' : ''}${
+                  isExpanded ? ' expanded' : ''
+                }`}
+              >
+                <button
+                  className={`dot-link${index === current ? ' active' : ''}`}
+                  onClick={() => {
+                    if (slide.children?.length) {
+                      setOpenGroup((group) =>
+                        group === slide.id ? null : slide.id
+                      );
+                    }
+                    onNavigate(index);
+                  }}
+                >
+                  <span className="dot"></span>
+                  <span>{slide.navTitle}</span>
+                  {slide.children?.length ? (
+                    <span className="nav-caret" aria-hidden="true">
+                      {isExpanded ? '−' : '+'}
+                    </span>
+                  ) : null}
+                </button>
+
+                {slide.children?.length ? (
+                  <div className="sub-nav">
+                    {slide.children.map((child) => (
+                      <button
+                        key={child.id}
+                        className={`sub-link${
+                          index === current && child.id === activeAnchor
+                            ? ' active'
+                            : ''
+                        }`}
+                        onClick={() => onNavigate(index, child.id)}
+                      >
+                        {child.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
         </nav>
 
         <div className="sidebar-footer">
@@ -128,6 +132,8 @@ Sidebar.propTypes = {
   ).isRequired,
   current: PropTypes.number.isRequired,
   activeAnchor: PropTypes.string,
+  openGroup: PropTypes.string,
+  setOpenGroup: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onNavigate: PropTypes.func.isRequired,
   lightTheme: PropTypes.bool.isRequired,

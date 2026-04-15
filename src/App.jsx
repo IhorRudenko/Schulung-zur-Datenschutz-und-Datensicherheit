@@ -10,9 +10,23 @@ const initialAnswers = slides
   .filter((slide) => slide.type === 'quiz')
   .flatMap((slide) => slide.questions.map(() => null));
 
+function getOpenSectionsForSlide(slide) {
+  if (slide?.type !== 'content' || !slide.sections?.length) {
+    return {};
+  }
+
+  return slide.sections.reduce((acc, section) => {
+    acc[`${slide.id}:${section.id}`] = true;
+    return acc;
+  }, {});
+}
+
 export default function App() {
   const [current, setCurrent] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 1100);
+  const [openSidebarGroup, setOpenSidebarGroup] = useState(
+    slides[0]?.children?.length ? slides[0].id : null
+  );
   const [lightTheme, setLightTheme] = useState(false);
   const [accordionOpen, setAccordionOpen] = useState({});
   const [pendingAnchor, setPendingAnchor] = useState(null);
@@ -59,6 +73,16 @@ export default function App() {
         }));
       }
 
+      const autoOpenSections = getOpenSectionsForSlide(slide);
+      if (Object.keys(autoOpenSections).length) {
+        setAccordionOpen((prev) => ({
+          ...prev,
+          ...autoOpenSections,
+        }));
+      }
+
+      setOpenSidebarGroup(slide?.children?.length ? slide.id : null);
+
       setActiveAnchor(targetId);
       setPendingAnchor(targetId ? { targetId, accordionKey } : null);
 
@@ -99,14 +123,48 @@ export default function App() {
 
   useEffect(() => {
     const slide = slides[current];
-    if (slide?.type === 'content' && slide.sections) {
-      const newAccordionOpen = {};
-      slide.sections.forEach((section) => {
-        newAccordionOpen[`${slide.id}:${section.id}`] = true;
-      });
-      setAccordionOpen((prev) => ({ ...prev, ...newAccordionOpen }));
+
+    if (slide?.type !== 'content' || !slide.sections?.length) {
+      return undefined;
     }
-  }, [current]);
+
+    const activeSlide = document.querySelector('.slide.active');
+    const scrollArea = activeSlide?.querySelector('.slide-scroll');
+    if (!activeSlide || !scrollArea) return undefined;
+
+    const sections = slide.sections
+      .map((section) => ({
+        id: section.id,
+        element: activeSlide.querySelector(`[data-anchor="${section.id}"]`),
+      }))
+      .filter((section) => section.element);
+
+    if (!sections.length) {
+      return undefined;
+    }
+
+    const updateActiveSection = () => {
+      const threshold = scrollArea.scrollTop + 36;
+      let nextActive = sections[0].id;
+
+      sections.forEach((section) => {
+        if (section.element.offsetTop <= threshold) {
+          nextActive = section.id;
+        }
+      });
+
+      setActiveAnchor((prev) => (prev === nextActive ? prev : nextActive));
+    };
+
+    updateActiveSection();
+    scrollArea.addEventListener('scroll', updateActiveSection, {
+      passive: true,
+    });
+
+    return () => {
+      scrollArea.removeEventListener('scroll', updateActiveSection);
+    };
+  }, [current, accordionOpen]);
 
   useEffect(() => {
     const activeSlide = document.querySelector('.slide.active');
@@ -174,10 +232,11 @@ export default function App() {
     if (action === 'jump') goToSlide(target);
     if (action === 'restart') {
       setQuizAnswers(initialAnswers);
-      setAccordionOpen({});
+      setAccordionOpen(getOpenSectionsForSlide(slides[0]));
       setActiveAnchor(null);
       setPendingAnchor(null);
       setCurrent(0);
+      setOpenSidebarGroup(slides[0]?.children?.length ? slides[0].id : null);
       setModal({ open: false, title: '', text: '', type: 'info' });
       requestAnimationFrame(() => scrollToTarget());
     }
@@ -238,6 +297,8 @@ export default function App() {
         slides={slides}
         current={current}
         activeAnchor={activeAnchor}
+        openGroup={openSidebarGroup}
+        setOpenGroup={setOpenSidebarGroup}
         sidebarOpen={sidebarOpen}
         onToggle={() => setSidebarOpen((s) => !s)}
         onNavigate={(index, targetId) => {
