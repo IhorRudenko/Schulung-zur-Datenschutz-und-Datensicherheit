@@ -1,27 +1,16 @@
-import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Sidebar({
   slides,
   current,
   activeAnchor,
+  openGroup,
+  setOpenGroup,
   onToggle,
   onNavigate,
   lightTheme,
   onToggleTheme,
 }) {
-  const [openGroup, setOpenGroup] = useState(null);
-  const currentSlide = slides[current];
-
-  useEffect(() => {
-    if (currentSlide?.children?.length) {
-      setOpenGroup(currentSlide.id);
-      return;
-    }
-
-    setOpenGroup(null);
-  }, [currentSlide]);
-
   return (
     <>
       <button
@@ -143,6 +132,8 @@ Sidebar.propTypes = {
   ).isRequired,
   current: PropTypes.number.isRequired,
   activeAnchor: PropTypes.string,
+  openGroup: PropTypes.string,
+  setOpenGroup: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onNavigate: PropTypes.func.isRequired,
   lightTheme: PropTypes.bool.isRequired,
