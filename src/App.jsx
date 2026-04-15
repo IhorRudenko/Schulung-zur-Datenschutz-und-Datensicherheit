@@ -109,6 +109,53 @@ export default function App() {
   }, [current]);
 
   useEffect(() => {
+    const slide = slides[current];
+
+    if (slide?.type !== 'content' || !slide.sections?.length) {
+      setActiveAnchor(null);
+      return undefined;
+    }
+
+    const activeSlide = document.querySelector('.slide.active');
+    const scrollArea = activeSlide?.querySelector('.slide-scroll');
+    if (!activeSlide || !scrollArea) return undefined;
+
+    const sections = slide.sections
+      .map((section) => ({
+        id: section.id,
+        element: activeSlide.querySelector(`[data-anchor="${section.id}"]`),
+      }))
+      .filter((section) => section.element);
+
+    if (!sections.length) {
+      setActiveAnchor(null);
+      return undefined;
+    }
+
+    const updateActiveSection = () => {
+      const threshold = scrollArea.scrollTop + 36;
+      let nextActive = sections[0].id;
+
+      sections.forEach((section) => {
+        if (section.element.offsetTop <= threshold) {
+          nextActive = section.id;
+        }
+      });
+
+      setActiveAnchor((prev) => (prev === nextActive ? prev : nextActive));
+    };
+
+    updateActiveSection();
+    scrollArea.addEventListener('scroll', updateActiveSection, {
+      passive: true,
+    });
+
+    return () => {
+      scrollArea.removeEventListener('scroll', updateActiveSection);
+    };
+  }, [current, accordionOpen]);
+
+  useEffect(() => {
     const activeSlide = document.querySelector('.slide.active');
     if (!activeSlide) return undefined;
 
